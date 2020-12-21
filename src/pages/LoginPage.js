@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { signInWithGoogle } from "../helpers/auth";
 
+// Login page: handles login/signup
+// Does not properly handle new users yet
+
 export default class LoginPage extends React.Component {
    state = {
       email: "",
@@ -36,15 +39,15 @@ export default class LoginPage extends React.Component {
    render() {
       return (
          <div>
-            <form onSubmit={this.handleSubmit}>
-               <h1>Login</h1>
-               <div>
+            {/* <form onSubmit={this.handleSubmit}> */}
+               {/* <h1>Login</h1> */}
+               {/* <div>
                   <input placeholder="Email" type="email" name="email" onChange={this.handleChange} value={this.state.email}></input>
                   <input placeholder="Password" type="password" name="password" onChange={this.handleChange} value={this.state.password}></input>
-               </div>
-               <button type="submit">Login</button>
+               </div> */}
+               {/* <button type="submit">Login</button> */}
                <button onClick={this.handleLogin}>Login with Google</button>
-            </form>
+            {/* </form> */}
             <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
             <Link to="/">Home</Link>
          </div>
