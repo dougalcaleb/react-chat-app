@@ -31,6 +31,7 @@ export default class LoginPage extends React.Component {
                <button onClick={() => signInWithGoogle()}>Login with Google</button>
             </form>
             <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+            <Link to="/">Home</Link>
          </div>
       );
    }

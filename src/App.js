@@ -8,7 +8,7 @@ import {
 
 import { auth } from "./services/firebase";
 import LoginPage from "./pages/LoginPage";
-import Main from "./pages/main";
+import Main from "./pages/Main";
 import PrivateRoute from "./Routing/PrivateRoute";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -17,6 +17,7 @@ const App = () => {
    let [authenticated, setAuth] = useState(false);
    let [user, setUser] = useState(null);
 
+   // Login user on component mount
    useEffect(() => {
       auth().onAuthStateChanged(user => {
          if (user) {
@@ -35,7 +36,7 @@ const App = () => {
          <Switch>
             <Route exact path="/" component={Main} />
             <Route path="/login" component={LoginPage} />
-            <PrivateRoute authenticated={authenticated} exact path="/profile" component={ProfilePage} />
+            <PrivateRoute authenticated={authenticated} redirectTo={"/login"} exact path="/profile" component={ProfilePage} />
          </Switch>
       </Router>
    );
