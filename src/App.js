@@ -34,7 +34,9 @@ const App = () => {
    return (
       <Router>
          <Switch>
-            <Route exact path="/" component={Main} />
+            <Route exact path="/">
+               <Main authenticated={authenticated}></Main>
+            </Route>
             <Route path="/login" component={LoginPage} />
             <PrivateRoute authenticated={authenticated} redirectTo={"/login"} exact path="/profile" component={ProfilePage} />
          </Switch>

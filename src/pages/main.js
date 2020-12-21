@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { signout } from "../helpers/auth";
 
 
-export default class Main extends React.Component {
-   render() {
-      return (
-         <div>
-            <div>Home page!</div>
-            <Link to="/login">Log In</Link>
-         </div>
-         
-      );
-   }
+const Main = (props) =>  {
+   return (
+      <div>
+         <div>Home page!</div>
+         {props.authenticated ? 
+            <button onClick={signout}>Sign out</button> :
+            <button><Link to="/login">Log in</Link></button>
+         }
+      </div>
+   )
 }
+
+export default Main;
