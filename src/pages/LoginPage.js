@@ -18,6 +18,21 @@ export default class LoginPage extends React.Component {
       })
    }
 
+   handleLogin = async () => {
+      try {
+         await signInWithGoogle();
+      
+         let { state } = this.props.location;
+         if (state && state.from) {
+            this.props.history.push(state.from.pathname);
+         } else {
+            this.props.history.push("/");
+         }
+      } catch (e) {
+         console.log(e);
+      }
+   }
+
    render() {
       return (
          <div>
@@ -28,7 +43,7 @@ export default class LoginPage extends React.Component {
                   <input placeholder="Password" type="password" name="password" onChange={this.handleChange} value={this.state.password}></input>
                </div>
                <button type="submit">Login</button>
-               <button onClick={() => signInWithGoogle()}>Login with Google</button>
+               <button onClick={this.handleLogin}>Login with Google</button>
             </form>
             <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
             <Link to="/">Home</Link>

@@ -8,7 +8,11 @@ const Main = (props) =>  {
       <div>
          <div>Home page!</div>
          {props.authenticated ? 
-            <button onClick={signout}>Sign out</button> :
+            <div>
+               <button onClick={signout}>Sign out</button>
+               <button><Link to="/profile">Profile</Link></button>
+            </div>
+            :
             <button><Link to="/login">Log in</Link></button>
          }
       </div>
