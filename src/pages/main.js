@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { signout } from "../helpers/auth";
+import setData from "../services/firebase-test";
 
 // Main page
 // This will house the chat and channels, and give links to profile and other pages
@@ -17,6 +18,7 @@ const Main = (props) =>  {
             :
             <button><Link to="/login">Log in</Link></button>
          }
+         <button onClick={setData}>Send Message</button>
       </div>
    )
 }
