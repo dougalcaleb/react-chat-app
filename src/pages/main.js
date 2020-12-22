@@ -16,6 +16,7 @@ const Main = (props) => {
         {props.authenticated ? (
           <div className="links">
             <p onClick={signout}>Sign out</p>
+            <p onClick={setData}>Set Data</p>
             <h1>Chat App</h1>
             <Link to="/profile">Profile</Link>
           </div>
