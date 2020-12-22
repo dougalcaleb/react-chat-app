@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;900&display=swap');
+
+* {
+    font-family: 'poppins';
+}
+$black: #1a1a2e;
+$dblue: #16213e;
+$blue: #0f3460;
+$red: #e94560;
+$white: white;
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+header {
+    display: flex;
+    background: $black;
+    color: $white;
+    height: 6em;
+    .links {
+        width: 100vw;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        p {
+            cursor: pointer;
+        }
+        a {
+            color: $white;
+            text-decoration: none;
+        }
+    }
+}
+
+.channels {
+    background: $red;
+    color: $white;
+    width: 20vw;
+    padding: 2em;
+    height: calc(100vh - 10em);
+}
+
+main {
+    display: flex;
+    width: 100vw;
+}
+
+.messages {
+    width: calc(80vw - 8em);
+    padding: 2em;
+    .chat {
+        .recieved {
+            background: #ddd;
+            border-radius: 1em 1em 1em 0;
+        }
+        .sent {
+            background: $blue;
+            color: white;
+            border-radius: 1.25em 1.25em 0 1.25em;
+            margin: 2em 0 2em auto;
+            // text-align: right;
+        }
+        .message {
+            padding: .5em 1em;
+            height: 1.5em;
+            line-height: 1.5em;
+            width: fit-content;
+            max-width: 60vw;
+        }
+    }
+    .sendMessage {
+        position: absolute;
+        bottom: 2em;
+        width: calc(80vw - 8em);
+        display: flex;
+        justify-content: space-between;
+        input {
+            width: calc(80vw - 15em);
+        }
+        button {
+            background: $blue;
+            color: white;
+            border: none;
+            outline: none;
+            padding: .25em .5em;
+            border-radius: 3px;
+            width: 4em;
+        }
+    }
+}
