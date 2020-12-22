@@ -16,15 +16,14 @@ async function setData() {
    newMessage.timestamp = Date.now();
    newMessage.text = "sweet home alabama (no." + mCount + ")";
    const resolution = await db.collection("test").doc("message-" + mCount).set(newMessage);
-   mCount++;
 }
 
 // async function readData() {
 
 // }
 
-db.collection("test").onSnapshot(function (messages) {
-   // messages = messages.orderBy("", "desc");
+db.collection("test").orderBy("timestamp", "asc").onSnapshot(function (messages) {
+   // messages = messages.orderBy("timestamp", "asc");
    let ml = [];
    messages.forEach(function (doc) {
       ml.push(doc.data());
@@ -40,7 +39,8 @@ db.collection("test").onSnapshot(function (messages) {
 
 async function getAllMessages() {
    // db.collection("test").orderBy("", "desc");
-   let messages = await db.collection("test").orderBy("timestamp","desc").get();
+   let messages = await db.collection("test").orderBy("timestamp", "asc").get();
+   console.log(messages);
    let ml = [];
    messages.forEach(function (doc) {
       ml.push(doc.data());
@@ -55,6 +55,44 @@ async function getAllMessages() {
    // console.log(mCount);
 }
 
+setInterval(() => {
+   console.log(knownMessages, mCount);
+}, 1000);
+
+async function deleteCollection(collectionPath = "test", batchSize = 100) {
+   const collectionRef = db.collection(collectionPath);
+   const query = collectionRef.orderBy("timestamp", "asc").limit(batchSize);
+ 
+   return new Promise((resolve, reject) => {
+     deleteQueryBatch(query, resolve).catch(reject);
+   });
+ }
+ 
+ async function deleteQueryBatch(query, resolve) {
+   const snapshot = await query.get();
+ 
+   const batchSize = snapshot.size;
+   if (batchSize === 0) {
+     // When there are no documents left, we are done
+     resolve();
+     return;
+   }
+ 
+   // Delete documents in a batch
+   const batch = db.batch();
+   snapshot.docs.forEach((doc) => {
+     batch.delete(doc.ref);
+   });
+   await batch.commit();
+ 
+   // Recurse on the next process tick, to avoid
+   // exploding the stack.
+   process.nextTick(() => {
+     deleteQueryBatch(query, resolve);
+   });
+ }
+
 document.onload = getAllMessages();
 
 export default setData;
+export { deleteCollection };
