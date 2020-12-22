@@ -4,7 +4,6 @@ import { signout } from "../helpers/auth";
 import "../styles/index.css";
 import Channels from "../components/channels";
 import Messages from "../components/messages";
-import setData from "../services/firebase-test";
 
 // Main page
 // This will house the chat and channels, and give links to profile and other pages
