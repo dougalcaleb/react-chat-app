@@ -40,7 +40,7 @@ db.collection("test").orderBy("timestamp", "asc").onSnapshot(function (messages)
 async function getAllMessages() {
    // db.collection("test").orderBy("", "desc");
    let messages = await db.collection("test").orderBy("timestamp", "asc").get();
-   console.log(messages);
+   // console.log(messages);
    let ml = [];
    messages.forEach(function (doc) {
       ml.push(doc.data());
@@ -55,9 +55,9 @@ async function getAllMessages() {
    // console.log(mCount);
 }
 
-setInterval(() => {
-   console.log(knownMessages, mCount);
-}, 1000);
+// setInterval(() => {
+//    console.log(knownMessages, mCount);
+// }, 1000);
 
 async function deleteCollection(collectionPath = "test", batchSize = 100) {
    const collectionRef = db.collection(collectionPath);
