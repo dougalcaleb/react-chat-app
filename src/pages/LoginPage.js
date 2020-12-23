@@ -46,9 +46,9 @@ export default class LoginPage extends React.Component {
                   <input placeholder="Password" type="password" name="password" onChange={this.handleChange} value={this.state.password}></input>
                </div> */}
                {/* <button type="submit">Login</button> */}
-               <button onClick={this.handleLogin}>Login with Google</button>
+               <button onClick={this.handleLogin}>Log in or Sign Up with Google</button>
             {/* </form> */}
-            <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+            {/* <p>Don't have an account? <Link to="/signup">Sign Up</Link></p> */}
             <Link to="/">Home</Link>
          </div>
       );

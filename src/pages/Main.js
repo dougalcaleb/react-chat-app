@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import PrivateRoute from "../Routing/PrivateRoute";
 import { signout } from "../helpers/auth";
 import "../styles/index.css";
 import Channels from "../components/channels";
 import Messages from "../components/messages";
-import setData from "../services/firebase-test";
 
 // Main page
 // This will house the chat and channels, and give links to profile and other pages
@@ -15,13 +15,13 @@ const Main = (props) => {
       <header>
         {props.authenticated ? (
           <div className="links">
-            <p onClick={signout}>Sign out</p>
-            <p onClick={setData}>Set Data</p>
+            <Link to="/login"><p onClick={signout}>Sign out</p></Link>
             <h1>Chat App</h1>
             <Link to="/profile">Profile</Link>
           </div>
         ) : (
-          <Link to="/login">Log in</Link>
+            // <Redirect to="/login"></Redirect>
+            <PrivateRoute authenticated={false} redirectTo={"/login"} redirectFrom="/" component={Main} />
         )}
       </header>
       <main>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import {
    HashRouter as Router,
    Route,
-   Switch
+   Switch,
 } from "react-router-dom";
 
 // Components & Pages
@@ -17,7 +17,7 @@ import { auth } from "./services/firebase";
 import { userInDB } from "./helpers/auth";
 import { addUserToDB } from "./helpers/auth";
 
-
+let userData;
 
 const App = () => {
    let [authenticated, setAuth] = useState(false);
@@ -25,7 +25,7 @@ const App = () => {
 
    // Login user on component mount
    useEffect(() => {
-      let userData;
+      let userExists;
       auth().onAuthStateChanged(async (user) => {
          if (user) {
             userData = {
@@ -34,9 +34,9 @@ const App = () => {
                photoURL: user.photoURL,
                uuid: user.uid
             }
-            let userExists = await userInDB(userData.email);
+            userExists = await userInDB(userData.email);
             if (userExists) {
-               console.log("You are in the database");
+               // console.log("You are in the database");
                if (userData) {
                   setAuth(true);
                   setUser(userData);
@@ -45,7 +45,7 @@ const App = () => {
                   setUser(null);
                }
             } else {
-               console.log("You are not in the database");
+               // console.log("You are not in the database");
                addUserToDB(userData);
             }
          }
@@ -66,3 +66,4 @@ const App = () => {
 }
 
 export default App;
+export { userData };
