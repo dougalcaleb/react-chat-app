@@ -1,17 +1,23 @@
+// React
 import React, { useState, useEffect } from "react";
 import {
    HashRouter as Router,
    Route,
-   Switch
+   Switch,
 } from "react-router-dom";
 
-
-import { auth } from "./services/firebase";
+// Components & Pages
 import LoginPage from "./pages/LoginPage";
 import Main from "./pages/Main";
 import PrivateRoute from "./Routing/PrivateRoute";
 import ProfilePage from "./pages/ProfilePage";
 
+// Services
+import { auth } from "./services/firebase";
+import { userInDB } from "./helpers/auth";
+import { addUserToDB } from "./helpers/auth";
+
+let userData;
 
 const App = () => {
    let [authenticated, setAuth] = useState(false);
@@ -19,14 +25,29 @@ const App = () => {
 
    // Login user on component mount
    useEffect(() => {
-      auth().onAuthStateChanged(user => {
+      let userExists;
+      auth().onAuthStateChanged(async (user) => {
          if (user) {
-            setAuth(true);
-            setUser(user);
-            console.log(user);
-         } else {
-            setAuth(false);
-            setUser(null);
+            userData = {
+               email: user.email,
+               displayName: user.displayName,
+               photoURL: user.photoURL,
+               uuid: user.uid
+            }
+            userExists = await userInDB(userData.email);
+            if (userExists) {
+               // console.log("You are in the database");
+               if (userData) {
+                  setAuth(true);
+                  setUser(userData);
+               } else {
+                  setAuth(false);
+                  setUser(null);
+               }
+            } else {
+               // console.log("You are not in the database");
+               addUserToDB(userData);
+            }
          }
       });
    }, []);
@@ -45,3 +66,4 @@ const App = () => {
 }
 
 export default App;
+export { userData };
