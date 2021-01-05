@@ -68,7 +68,7 @@ class Messages extends React.Component {
                   message="EBICCOO"
                   clas="messageWrap sent"
                   time={1609861938035}
-               />
+               /> */}
 
                {messages}
 
