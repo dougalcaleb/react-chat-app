@@ -15,7 +15,6 @@ import { Redirect, Route } from "react-router-dom";
 */
 
 const PrivateRoute = (props) => {
-   console.log(props.authenticated);
    return props.authenticated ? (
       <Route exact path={props.path} component={props.component} />
    ) : (
