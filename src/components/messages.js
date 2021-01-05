@@ -70,12 +70,12 @@ class Messages extends React.Component {
                <div className="message sent">Ima spend my holiday locked in</div>
                <div className="message recieved">My body got rid of them toxins</div>
                <div className="message sent">Sportscenter, top ten</div> */}
-               <Message
+               {/* <Message
                   name="Anders"
                   message="EBICCOO"
                   className="message recieved"
                   time={1609861938035}
-               />
+               /> */}
 
                {messages}
 
