@@ -58,6 +58,22 @@ main {
     height: calc(100vh - 14em);
     .chat {
         .messageWrap {
+            .message {
+                display: flex;
+                img {
+                    padding: .5em 0;
+                }
+                p {
+                    background: #ddd;
+                    border-radius: 1.25em 1.25em 1.25em 0;
+                    height: fit-content;
+                }
+            }
+
+            h6 {
+                margin: 0 4em;
+                font-weight: 300;
+            }
             img {
                 border-radius: 100%;
                 width: 2em;
@@ -73,35 +89,6 @@ main {
             }
         }
 
-        .sent {
-            margin: 2em 0 0 auto;
-            text-align: right;
-
-            .message {
-                flex-direction: row-reverse;
-                justify-self: flex-end;
-                display: flex;
-                justify-content: flex-start;
-                margin-bottom: .5em;
-
-                img {
-                    margin-left: .5em;
-                    padding: .25em 0;
-                }
-                p {
-                    background: $blue;
-                    color: white;
-                    border-radius: 1.25em 1.25em 0 1.25em;
-                    margin: 0 0 0 auto;
-                }
-            }
-
-            h6 {
-                margin: 0 4em;
-                font-weight: 300;
-            }
-        }
-
         .Message {
             padding: .5em 1em;
             height: 1.5em;
@@ -110,23 +97,33 @@ main {
             max-width: 60vw;
             margin: 0 .5em;
         }
+    }
+    .sent {
+        margin: 2em 0 0 auto;
+        text-align: right;
 
-        .recieved {
-            .message {
-                display: flex;
-                img {
-                    padding: .5em 0;
-                }
-                p {
-                    background: #ddd;
-                    border-radius: 1.25em 1.25em 1.25em 0;
-                }
-            }
+        .message {
+            flex-direction: row-reverse;
+            justify-self: flex-end;
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: .5em;
 
-            h6 {
-                margin: 0 4em;
-                font-weight: 300;
+            img {
+                margin-left: .5em;
+                padding: .25em 0;
             }
+            p {
+                background: $blue;
+                color: white;
+                border-radius: 1.25em 1.25em 0 1.25em;
+                margin: 0 0 0 auto;
+            }
+        }
+
+        h6 {
+            margin: 0 4em;
+            font-weight: 300;
         }
     }
 
