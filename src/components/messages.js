@@ -26,7 +26,7 @@ class Messages extends React.Component {
       console.log("Store was updated. Outputting new messages list:");
       console.log(store.getState().messages);
       this.setState({
-         messages: store.getState().messages
+         messages: store.getState().messages,
       });
    }
    
@@ -45,18 +45,19 @@ class Messages extends React.Component {
       console.log("New message, poggers");
    }
    render() {
-      store.subscribe(this.addNewMessage);
+      // store.subscribe(this.addNewMessage);
 
 
-      console.log("Message list is:");
+      // console.log("Message list is:");
       // console.log(this.state.messages);
       const messages = store.getState().messages.map((msg) => {
-         <Message
+         return (<Message
             name={msg.displayName}
             message={msg.text}
             time={msg.timestamp}
-            picture={msg.pic}
-         />
+            pic={msg.pic}
+            key={msg.timestamp}
+         />)
       });
       return (
          <div className="messages">
@@ -69,11 +70,12 @@ class Messages extends React.Component {
                <div className="message sent">Ima spend my holiday locked in</div>
                <div className="message recieved">My body got rid of them toxins</div>
                <div className="message sent">Sportscenter, top ten</div> */}
-               {/* <Message
+               <Message
                   name="Anders"
                   message="EBICCOO"
-                  className = "message recieved"
-               /> */}
+                  className="message recieved"
+                  time={1609861938035}
+               />
 
                {messages}
 
