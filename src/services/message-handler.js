@@ -10,7 +10,7 @@ let knownMessages = 0;
 let messageList = [];
 
 const newMessage = {
-   name: "Unknown",
+   displayName: "Unknown",
    timestamp: 0,
    pic: null,
    uuid: null,
@@ -20,7 +20,7 @@ const newMessage = {
 async function sendMessage(text) {
    newMessage.timestamp = Date.now();
    newMessage.text = text;
-   newMessage.name = userData.displayName;
+   newMessage.displayName = userData.displayName;
    newMessage.pic = userData.photoURL;
    newMessage.uuid = userData.uuid;
    await db.collection("messages").doc("message-" + mCount).set(newMessage);
