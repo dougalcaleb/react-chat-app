@@ -10,8 +10,6 @@ export function signout() {
    return auth().signOut();
 }
 
-let userData = {};
-
 export async function userInDB(identifier) {
    const userExists = await db.collection("users").doc(identifier).get();
    if (userExists.exists) {
