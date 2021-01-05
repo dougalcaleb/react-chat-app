@@ -37,7 +37,7 @@ const App = () => {
                uuid: user.uid
             }
             console.log(userData)
-            userExists = await userInDB(userData.email);
+            userExists = userInDB(userData.email);
             if (userExists) {
                console.log("You are in the database");
                if (userData) {
