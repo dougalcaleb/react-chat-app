@@ -25,8 +25,12 @@ export class Message extends Component {
     interval = seconds / 60;
     if (interval > 1) {
       return Math.floor(interval) + " minutes";
-    }
-    return Math.floor(seconds) + " seconds";
+     }
+   //   if (Math.floor(seconds) <= 5) {
+        return "Just now"
+   //   } else {
+   //      return Math.floor(seconds) + " seconds";
+   //   }
   }
   render() {
     return (
@@ -36,7 +40,7 @@ export class Message extends Component {
           <img src={this.props.pic} />
           <p className="Message">{this.props.message}</p>
         </div>
-        <h6>{this.getTime(Date.now() - 600000)}</h6>
+        <h6>{this.getTime(Date.now() - (Date.now() - this.props.time))}</h6>
       </div>
     );
   }
