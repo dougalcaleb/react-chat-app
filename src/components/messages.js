@@ -57,6 +57,7 @@ class Messages extends React.Component {
             time={msg.timestamp}
             pic={msg.pic}
             key={msg.timestamp}
+            clas="messageWrap sent"
          />)
       });
       return (
@@ -73,7 +74,7 @@ class Messages extends React.Component {
                <Message
                   name="Anders"
                   message="EBICCOO"
-                  className="message recieved"
+                  className="messageWrap recieved"
                   time={1609861938035}
                />
 

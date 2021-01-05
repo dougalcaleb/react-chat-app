@@ -54,7 +54,8 @@ main {
 .messages {
     width: calc(80vw - 8em);
     padding: 2em;
-
+    overflow-y: scroll;
+    height: calc(100vh - 14em);
     .chat {
         .messageWrap {
             img {
@@ -87,9 +88,6 @@ main {
                     margin-left: .5em;
                     padding: .25em 0;
                 }
-            }
-
-            .message {
                 p {
                     background: $blue;
                     color: white;
