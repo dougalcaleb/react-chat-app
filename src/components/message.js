@@ -23,14 +23,10 @@ export class Message extends Component {
       return Math.floor(interval) + " hours";
     }
     interval = seconds / 60;
-    if (interval > 1) {
-      return Math.floor(interval) + " minutes";
+     if (interval > 1) {
+        return Math.floor(interval) + " minutes";
      }
-   //   if (Math.floor(seconds) <= 5) {
-        return "Just now"
-   //   } else {
-   //      return Math.floor(seconds) + " seconds";
-   //   }
+     return "Just now";
   }
   render() {
     return (
