@@ -6,7 +6,7 @@ export class Message extends Component {
     var seconds = Math.floor((new Date() - date) / 1000);
 
     var interval = seconds / 31536000;
-  
+
     if (interval > 1) {
       return Math.floor(interval) + " years";
     }
@@ -30,15 +30,13 @@ export class Message extends Component {
   }
   render() {
     return (
-      <div>
-        <div>
-          <img />
+      <div className="messageWrap recieved">
+        <h6>{this.props.name}</h6>
+        <div className="message">
+          <img src={this.props.pic} />
+          <p className="Message">{this.props.message}</p>
         </div>
-        <div>
-          <h6>{this.props.name}</h6>
-          <div className="message">{this.props.message}</div>
-          <h6>{this.getTime(Date.now()-600000)}</h6>
-        </div>
+        <h6>{this.getTime(Date.now() - 600000)}</h6>
       </div>
     );
   }
