@@ -3,14 +3,11 @@ import '../styles/index.css';
 import Message from './message';
 import { sendMessage, messageList } from "../services/message-handler";
 import { store } from "../services/data-handler";
+import { v4 as uuidv4 } from "uuid";
 
 class Messages extends React.Component {
    constructor(props) {
       super(props);
-
-      // this.state = {
-      //    messsages: []
-      // };
       this.unsub = null;
    }
 
@@ -41,22 +38,14 @@ class Messages extends React.Component {
             break;
       }
    }
-   addNewMessage = (msg) => {
-      console.log("New message, poggers");
-   }
    render() {
-      // store.subscribe(this.addNewMessage);
-
-
-      // console.log("Message list is:");
-      // console.log(this.state.messages);
       const messages = store.getState().messages.map((msg) => {
          return (<Message
             name={msg.displayName}
             message={msg.text}
             time={msg.timestamp}
             pic={msg.pic}
-            key={msg.timestamp}
+            key={uuidv4()}
             clas="messageWrap sent"
          />)
       });
