@@ -45,22 +45,61 @@ main {
   width: calc(80vw - 8em);
   padding: 2em;
 }
-.messages .chat .recieved {
-  background: #ddd;
-  border-radius: 1em 1em 1em 0;
+.messages .chat .messageWrap img {
+  border-radius: 100%;
+  width: 2em;
+  height: 2em;
+}
+.messages .chat .messageWrap .topInfo h6 {
+  line-height: 3em;
+  font-weight: 300;
 }
 .messages .chat .sent {
+  margin: 2em 0 0 auto;
+  text-align: right;
+}
+.messages .chat .sent .message {
+  flex-direction: row-reverse;
+  justify-self: flex-end;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0.5em;
+}
+.messages .chat .sent .message img {
+  margin-left: 0.5em;
+  padding: 0.25em 0;
+}
+.messages .chat .sent .message p {
   background: #0f3460;
   color: white;
   border-radius: 1.25em 1.25em 0 1.25em;
-  margin: 2em 0 2em auto;
+  margin: 0 0 0 auto;
 }
-.messages .chat .message {
+.messages .chat .sent h6 {
+  margin: 0 4em;
+  font-weight: 300;
+}
+.messages .chat .Message {
   padding: 0.5em 1em;
   height: 1.5em;
   line-height: 1.5em;
   width: fit-content;
   max-width: 60vw;
+  margin: 0 0.5em;
+}
+.messages .chat .recieved .message {
+  display: flex;
+}
+.messages .chat .recieved .message img {
+  padding: 0.5em 0;
+}
+.messages .chat .recieved .message p {
+  background: #ddd;
+  border-radius: 1.25em 1.25em 1.25em 0;
+}
+.messages .chat .recieved h6 {
+  margin: 0 4em;
+  font-weight: 300;
 }
 .messages .sendMessage {
   position: absolute;

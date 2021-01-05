@@ -3,6 +3,7 @@
 * {
     font-family: 'poppins';
 }
+
 $black: #1a1a2e;
 $dblue: #16213e;
 $blue: #0f3460;
@@ -19,14 +20,17 @@ header {
     background: $black;
     color: $white;
     height: 6em;
+
     .links {
         width: 100vw;
         display: flex;
         justify-content: space-around;
         align-items: center;
+
         p {
             cursor: pointer;
         }
+
         a {
             color: $white;
             text-decoration: none;
@@ -50,35 +54,95 @@ main {
 .messages {
     width: calc(80vw - 8em);
     padding: 2em;
+
     .chat {
-        .recieved {
-            background: #ddd;
-            border-radius: 1em 1em 1em 0;
+        .messageWrap {
+            img {
+                border-radius: 100%;
+                width: 2em;
+                height: 2em;
+                // margin-right: 1em;
+            }
+
+            .topInfo {
+                h6 {
+                    line-height: 3em;
+                    font-weight: 300;
+                }
+            }
         }
+
         .sent {
-            background: $blue;
-            color: white;
-            border-radius: 1.25em 1.25em 0 1.25em;
-            margin: 2em 0 2em auto;
-            // text-align: right;
+            margin: 2em 0 0 auto;
+            text-align: right;
+
+            .message {
+                flex-direction: row-reverse;
+                justify-self: flex-end;
+                display: flex;
+                justify-content: flex-start;
+                margin-bottom: .5em;
+
+                img {
+                    margin-left: .5em;
+                    padding: .25em 0;
+                }
+            }
+
+            .message {
+                p {
+                    background: $blue;
+                    color: white;
+                    border-radius: 1.25em 1.25em 0 1.25em;
+                    margin: 0 0 0 auto;
+                }
+            }
+
+            h6 {
+                margin: 0 4em;
+                font-weight: 300;
+            }
         }
-        .message {
+
+        .Message {
             padding: .5em 1em;
             height: 1.5em;
             line-height: 1.5em;
             width: fit-content;
             max-width: 60vw;
+            margin: 0 .5em;
+        }
+
+        .recieved {
+            .message {
+                display: flex;
+                img {
+                    padding: .5em 0;
+                }
+                p {
+                    background: #ddd;
+                    border-radius: 1.25em 1.25em 1.25em 0;
+                }
+            }
+
+            h6 {
+                margin: 0 4em;
+                font-weight: 300;
+            }
         }
     }
+
     .sendMessage {
         position: absolute;
         bottom: 2em;
         width: calc(80vw - 8em);
         display: flex;
         justify-content: space-between;
+
         input {
             width: calc(80vw - 15em);
         }
+
         button {
             background: $blue;
             color: white;

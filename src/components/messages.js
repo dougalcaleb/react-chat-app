@@ -1,8 +1,10 @@
 import React from "react";
 import '../styles/index.css';
 import Message from './message';
+import { userData } from "../App";
 
 const Messages = () => {
+    console.log(userData)
     return(
         <div className="messages">
             <div className="chat">
@@ -15,8 +17,9 @@ const Messages = () => {
                 <div className="message recieved">My body got rid of them toxins</div>
                 <div className="message sent">Sportscenter, top ten</div>
                 <Message
-                    name="Anders"
+                    name={userData.displayName}
                     message="EBICCOO"
+                    pic={userData.photoURL}
                 />
             </div>
             <div className="sendMessage">

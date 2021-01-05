@@ -17,7 +17,7 @@ import { auth } from "./services/firebase";
 import { userInDB } from "./helpers/auth";
 import { addUserToDB } from "./helpers/auth";
 
-let userData;
+let userData = {};
 
 const App = () => {
    let [authenticated, setAuth] = useState(false);
@@ -34,6 +34,7 @@ const App = () => {
                photoURL: user.photoURL,
                uuid: user.uid
             }
+            console.log(userData)
             userExists = await userInDB(userData.email);
             if (userExists) {
                // console.log("You are in the database");
@@ -64,6 +65,8 @@ const App = () => {
       </Router>
    );
 }
+
+console.log(userData);
 
 export default App;
 export { userData };
