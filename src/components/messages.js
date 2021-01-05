@@ -31,7 +31,7 @@ class Messages extends React.Component {
    }
    
    handleMessageSend = () => {
-      sendMessage(document.querySelector(".pendingMessage").value);
+      sendMessage(document.querySelector(".pendingMessage").value, "sent");
       document.querySelector(".pendingMessage").value = "";
    }
    handleKeyDown = (e) => {
@@ -50,31 +50,23 @@ class Messages extends React.Component {
 
       // console.log("Message list is:");
       // console.log(this.state.messages);
-      const messages = store.getState().messages.map((msg) => {
+      const messages = store.getState().messages.map((msg, who) => {
          return (<Message
             name={msg.displayName}
             message={msg.text}
             time={msg.timestamp}
             pic={msg.pic}
             key={msg.timestamp}
-            clas="messageWrap sent"
+            clas={"messageWrap " + who}
          />)
       });
       return (
          <div className="messages">
             <div className="chat">
-               {/* <div className="message recieved">What's poppin</div>
-               <div className="message sent">Brand new whip just hopped in</div>
-               <div className="message recieved">I got options</div>
-               <div className="message sent">I could pass that snitch like Stockton</div>
-               <div className="message recieved">Just joshin</div>
-               <div className="message sent">Ima spend my holiday locked in</div>
-               <div className="message recieved">My body got rid of them toxins</div>
-               <div className="message sent">Sportscenter, top ten</div> */}
                <Message
                   name="Anders"
                   message="EBICCOO"
-                  className="messageWrap recieved"
+                  clas="messageWrap sent"
                   time={1609861938035}
                />
 

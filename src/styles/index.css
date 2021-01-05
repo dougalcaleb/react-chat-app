@@ -47,6 +47,21 @@ main {
   overflow-y: scroll;
   height: calc(100vh - 14em);
 }
+.messages .chat .messageWrap .message {
+  display: flex;
+}
+.messages .chat .messageWrap .message img {
+  padding: 0.5em 0;
+}
+.messages .chat .messageWrap .message p {
+  background: #ddd;
+  border-radius: 1.25em 1.25em 1.25em 0;
+  height: fit-content;
+}
+.messages .chat .messageWrap h6 {
+  margin: 0 4em;
+  font-weight: 300;
+}
 .messages .chat .messageWrap img {
   border-radius: 100%;
   width: 2em;
@@ -54,31 +69,6 @@ main {
 }
 .messages .chat .messageWrap .topInfo h6 {
   line-height: 3em;
-  font-weight: 300;
-}
-.messages .chat .sent {
-  margin: 2em 0 0 auto;
-  text-align: right;
-}
-.messages .chat .sent .message {
-  flex-direction: row-reverse;
-  justify-self: flex-end;
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 0.5em;
-}
-.messages .chat .sent .message img {
-  margin-left: 0.5em;
-  padding: 0.25em 0;
-}
-.messages .chat .sent .message p {
-  background: #0f3460;
-  color: white;
-  border-radius: 1.25em 1.25em 0 1.25em;
-  margin: 0 0 0 auto;
-}
-.messages .chat .sent h6 {
-  margin: 0 4em;
   font-weight: 300;
 }
 .messages .chat .Message {
@@ -89,17 +79,28 @@ main {
   max-width: 60vw;
   margin: 0 0.5em;
 }
-.messages .chat .recieved .message {
+.messages .sent {
+  margin: 2em 0 0 auto;
+  text-align: right;
+}
+.messages .sent .message {
+  flex-direction: row-reverse;
+  justify-self: flex-end;
   display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0.5em;
 }
-.messages .chat .recieved .message img {
-  padding: 0.5em 0;
+.messages .sent .message img {
+  margin-left: 0.5em;
+  padding: 0.25em 0;
 }
-.messages .chat .recieved .message p {
-  background: #ddd;
-  border-radius: 1.25em 1.25em 1.25em 0;
+.messages .sent .message p {
+  background: #0f3460;
+  color: white;
+  border-radius: 1.25em 1.25em 0 1.25em;
+  margin: 0 0 0 auto;
 }
-.messages .chat .recieved h6 {
+.messages .sent h6 {
   margin: 0 4em;
   font-weight: 300;
 }
