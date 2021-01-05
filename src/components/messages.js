@@ -11,15 +11,22 @@ class Messages extends React.Component {
       // this.state = {
       //    messsages: []
       // };
+      this.unsub = null;
    }
 
    componentDidMount = () => {
-      store.subscribe(() => {
-         console.log("Store was updated. Outputting new messages list:");
-         console.log(store.getState().messages);
-         this.setState({
-            messages: store.getState().messages
-         });
+      this.unsub = store.subscribe(this.handleNewMessage);
+   }
+
+   componentWillUnmount = () => {
+      this.unsub();
+   }
+
+   handleNewMessage = () => {
+      console.log("Store was updated. Outputting new messages list:");
+      console.log(store.getState().messages);
+      this.setState({
+         messages: store.getState().messages
       });
    }
    
