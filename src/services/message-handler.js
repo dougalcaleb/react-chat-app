@@ -31,8 +31,15 @@ db.collection("messages").orderBy("timestamp", "asc").onSnapshot(function (messa
    messages.forEach(function (doc) {
       ml.push(doc.data());
    });
-   console.log("New message in DB!");
+   for (let a = 0; a < knownMessages; a++) {
+      ml.shift();
+   }
+
+   console.log("New message in DB! It is:");
+   console.log(ml);
    store.dispatch({ type: "UPLOAD", messages: ml });
+   knownMessages += ml.length;
+   mCount += ml.length;
 });
 
 async function getAllMessages() {
