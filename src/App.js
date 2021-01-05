@@ -24,9 +24,11 @@ const App = () => {
    let [user, setUser] = useState(null);
 
    // Login user on component mount
+   //! PROBLEM: authentication is false and routes before can be true
+   // POTENTIAL SOLUTION: localstorage can keep previously logged in user
    useEffect(() => {
       let userExists;
-      auth().onAuthStateChanged(async (user) => {
+      auth().onAuthStateChanged((user) => {
          if (user) {
             userData = {
                email: user.email,
@@ -35,9 +37,9 @@ const App = () => {
                uuid: user.uid
             }
             console.log(userData)
-            userExists = await userInDB(userData.email);
+            userExists = userInDB(userData.email);
             if (userExists) {
-               // console.log("You are in the database");
+               console.log("You are in the database");
                if (userData) {
                   setAuth(true);
                   setUser(userData);
@@ -46,7 +48,7 @@ const App = () => {
                   setUser(null);
                }
             } else {
-               // console.log("You are not in the database");
+               console.log("You are not in the database");
                addUserToDB(userData);
             }
          }

@@ -1,23 +1,28 @@
 import { db } from "./firebase";
+import { userData } from "../App";
+import Messages from "../components/messages";
+import { newMessage as createNewMessage } from "../components/messages";
+import { updateStore, store } from "./data-handler";
 
 let mCount = 0;
 let knownMessages = 0;
 
+let messageList = [];
+
 const newMessage = {
    name: "Unknown",
-   tag: "N/A",
    timestamp: 0,
    pic: null,
    uuid: null,
    text: "< Error >"
 };
 
-async function sendMessage(text, user) {
+async function sendMessage(text) {
    newMessage.timestamp = Date.now();
    newMessage.text = text;
-   newMessage.name = user.displayName;
-   newMessage.pic = user.photoURL;
-   newMessage.uuid = user.uid;
+   newMessage.name = userData.displayName;
+   newMessage.pic = userData.photoURL;
+   newMessage.uuid = userData.uuid;
    await db.collection("messages").doc("message-" + mCount).set(newMessage);
 }
 
@@ -26,25 +31,28 @@ db.collection("messages").orderBy("timestamp", "asc").onSnapshot(function (messa
    messages.forEach(function (doc) {
       ml.push(doc.data());
    });
-   for (let a = knownMessages; a < ml.length; a++) {
-      console.log("From: " + ml[a].name + " at " + ml[a].timestamp + " message: " + ml[a].text);
+   for (let a = 0; a < knownMessages; a++) {
+      ml.shift();
    }
-   knownMessages = ml.length;
-   mCount = ml.length;
+
+   console.log("New message in DB! It is:");
+   console.log(ml);
+   store.dispatch({ type: "UPLOAD", messages: ml });
+   knownMessages += ml.length;
+   mCount += ml.length;
 });
 
 async function getAllMessages() {
    let messages = await db.collection("messages").orderBy("timestamp", "asc").get();
-   console.log(messages);
    let ml = [];
    messages.forEach(function (doc) {
       ml.push(doc.data());
    });
-   for (let a = knownMessages; a < ml.length; a++) {
-      console.log("From: " + ml[a].name + " at " + ml[a].timestamp + " message: " + ml[a].text);
-   }
-   knownMessages = ml.length;
-   mCount = ml.length;
+   return ml;
 }
 
+
+
 document.onload = getAllMessages();
+
+export { sendMessage, getAllMessages, messageList };
