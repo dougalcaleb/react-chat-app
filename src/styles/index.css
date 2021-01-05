@@ -71,38 +71,37 @@ main {
   line-height: 3em;
   font-weight: 300;
 }
-.messages .chat .Message {
-  padding: 0.5em 1em;
-  height: 1.5em;
-  line-height: 1.5em;
-  width: fit-content;
-  max-width: 60vw;
-  margin: 0 0.5em;
-}
-.messages .sent {
+.messages .chat .sent {
   margin: 2em 0 0 auto;
   text-align: right;
 }
-.messages .sent .message {
+.messages .chat .sent .message {
   flex-direction: row-reverse;
   justify-self: flex-end;
   display: flex;
   justify-content: flex-start;
   margin-bottom: 0.5em;
 }
-.messages .sent .message img {
+.messages .chat .sent .message img {
   margin-left: 0.5em;
   padding: 0.25em 0;
 }
-.messages .sent .message p {
+.messages .chat .sent .message p {
   background: #0f3460;
   color: white;
   border-radius: 1.25em 1.25em 0 1.25em;
   margin: 0 0 0 auto;
 }
-.messages .sent h6 {
+.messages .chat .sent h6 {
   margin: 0 4em;
   font-weight: 300;
+}
+.messages .chat .Message {
+  padding: 0.5em 1em;
+  line-height: 1.5em;
+  width: fit-content;
+  max-width: 60vw;
+  margin: 0 0.5em;
 }
 .messages .sendMessage {
   position: absolute;

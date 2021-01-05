@@ -34,7 +34,7 @@ export class Message extends Component {
   }
   render() {
     return (
-      <div className={this.props.clas}>
+      <div className={this.props.clas + " messageWrap"}>
         <h6>{this.props.name}</h6>
         <div className="message">
           <img src={this.props.pic} />

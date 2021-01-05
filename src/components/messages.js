@@ -13,7 +13,10 @@ class Messages extends React.Component {
       // };
       this.unsub = null;
    }
-
+//    updateScroll(){
+//     var element = document.getElementById("yourDivID");
+//     element.scrollTop = element.scrollHeight;
+// }
    componentDidMount = () => {
       this.unsub = store.subscribe(this.handleNewMessage);
    }
@@ -24,7 +27,6 @@ class Messages extends React.Component {
 
    handleNewMessage = () => {
       console.log("Store was updated. Outputting new messages list:");
-      console.log(store.getState().messages);
       this.setState({
          messages: store.getState().messages,
       });
@@ -33,6 +35,7 @@ class Messages extends React.Component {
    handleMessageSend = () => {
       sendMessage(document.querySelector(".pendingMessage").value, "sent");
       document.querySelector(".pendingMessage").value = "";
+    //   this.updateScroll()
    }
    handleKeyDown = (e) => {
       switch (e.key) {
@@ -50,14 +53,14 @@ class Messages extends React.Component {
 
       // console.log("Message list is:");
       // console.log(this.state.messages);
-      const messages = store.getState().messages.map((msg, who) => {
+      const messages = store.getState().messages.map((msg) => {
          return (<Message
             name={msg.displayName}
             message={msg.text}
             time={msg.timestamp}
             pic={msg.pic}
             key={msg.timestamp}
-            clas={"messageWrap " + who}
+            clas={msg.who}
          />)
       });
       return (
@@ -68,7 +71,7 @@ class Messages extends React.Component {
                   message="EBICCOO"
                   clas="messageWrap sent"
                   time={1609861938035}
-               /> */}
+               />
 
                {messages}
 
@@ -81,6 +84,5 @@ class Messages extends React.Component {
       )
    }
 }
-
 export default Messages;
 

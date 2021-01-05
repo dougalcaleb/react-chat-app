@@ -17,9 +17,10 @@ const newMessage = {
    text: "< Error >"
 };
 
-async function sendMessage(text) {
+async function sendMessage(text, who) {
    newMessage.timestamp = Date.now();
    newMessage.text = text;
+   newMessage.who = who;
    newMessage.displayName = userData.displayName;
    newMessage.pic = userData.photoURL;
    newMessage.uuid = userData.uuid;
@@ -34,9 +35,6 @@ db.collection("messages").orderBy("timestamp", "asc").onSnapshot(function (messa
    for (let a = 0; a < knownMessages; a++) {
       ml.shift();
    }
-
-   console.log("New message in DB! It is:");
-   console.log(ml);
    store.dispatch({ type: "UPLOAD", messages: ml });
    knownMessages += ml.length;
    mCount += ml.length;

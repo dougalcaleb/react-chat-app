@@ -36,7 +36,6 @@ const App = () => {
                photoURL: user.photoURL,
                uuid: user.uid
             }
-            console.log(userData)
             userExists = userInDB(userData.email);
             if (userExists) {
                console.log("You are in the database");
