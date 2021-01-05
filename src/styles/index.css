@@ -44,6 +44,8 @@ main {
 .messages {
   width: calc(80vw - 8em);
   padding: 2em;
+  overflow-y: scroll;
+  height: calc(100vh - 14em);
 }
 .messages .chat .messageWrap img {
   border-radius: 100%;
