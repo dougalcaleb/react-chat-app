@@ -30,7 +30,7 @@ export class Message extends Component {
   }
   render() {
     return (
-      <div className="messageWrap recieved">
+      <div className={this.props.clas}>
         <h6>{this.props.name}</h6>
         <div className="message">
           <img src={this.props.pic} />

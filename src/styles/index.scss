@@ -154,3 +154,27 @@ main {
         }
     }
 }
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    button {
+        background: $blue;
+        border: 2px solid $dblue;
+        color: white;
+        outline: none;
+        font-size: 1.5em;
+        border-radius: 3px;
+        padding: .5em;
+    }
+    a {
+        font-size: 1.5em;
+        margin-top: 1em;
+        color: $dblue;
+        text-decoration: none;
+    }
+}
