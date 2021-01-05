@@ -121,4 +121,28 @@ main {
   width: 4em;
 }
 
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.login button {
+  background: #0f3460;
+  border: 2px solid #16213e;
+  color: white;
+  outline: none;
+  font-size: 1.5em;
+  border-radius: 3px;
+  padding: 0.5em;
+}
+.login a {
+  font-size: 1.5em;
+  margin-top: 1em;
+  color: #16213e;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=index.css.map */

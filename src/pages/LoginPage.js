@@ -38,17 +38,8 @@ export default class LoginPage extends React.Component {
 
    render() {
       return (
-         <div>
-            {/* <form onSubmit={this.handleSubmit}> */}
-               {/* <h1>Login</h1> */}
-               {/* <div>
-                  <input placeholder="Email" type="email" name="email" onChange={this.handleChange} value={this.state.email}></input>
-                  <input placeholder="Password" type="password" name="password" onChange={this.handleChange} value={this.state.password}></input>
-               </div> */}
-               {/* <button type="submit">Login</button> */}
+         <div className="login">
                <button onClick={this.handleLogin}>Log in or Sign Up with Google</button>
-            {/* </form> */}
-            {/* <p>Don't have an account? <Link to="/signup">Sign Up</Link></p> */}
             <Link to="/">Home</Link>
          </div>
       );
