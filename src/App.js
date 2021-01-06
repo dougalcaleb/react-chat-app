@@ -24,7 +24,7 @@ const App = () => {
    let [user, setUser] = useState(null);
 
    // Login user on component mount
-   //! PROBLEM: authentication is false and routes before can be true
+   //! PROBLEM: authentication is false and routes before it can be true, causing user to be sent to home/login page every time
    // POTENTIAL SOLUTION: localstorage can keep previously logged in user
    useEffect(() => {
       let userExists;
