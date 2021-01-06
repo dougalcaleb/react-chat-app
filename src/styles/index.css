@@ -46,6 +46,8 @@ main {
   padding: 2em;
   overflow-y: scroll;
   height: calc(100vh - 14em);
+  display: flex;
+  flex-direction: column-reverse;
 }
 .messages .chat .messageWrap .message {
   display: flex;
