@@ -3,6 +3,7 @@ import "../styles/index.css";
 import Message from "./message";
 import { sendMessage, messageList } from "../services/message-handler";
 import { store } from "../services/data-handler";
+import { v4 as uuidv4 } from "uuid";
 
 class Messages extends React.Component {
   constructor(props) {
@@ -55,20 +56,15 @@ class Messages extends React.Component {
           message={msg.text}
           time={msg.timestamp}
           pic={msg.pic}
-          key={msg.timestamp}
+          key={uuidv4()}
           clas={msg.who}
         />
       );
     });
+     
     return (
       <div className="messages">
         <div className="chat">
-          <Message
-            name="Anders"
-            message="EBICCOO"
-            clas="messageWrap sent"
-            time={1609861938035}
-          />
 
           {messages}
         </div>
