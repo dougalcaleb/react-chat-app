@@ -5,6 +5,7 @@ import { sendMessage, messageList } from "../services/message-handler";
 import { store } from "../services/data-handler";
 import { v4 as uuidv4 } from "uuid";
 import { userData } from "../App";
+import { GroupMessage } from './groupMessage'
 
 const messagesToShow = 75;
 
@@ -55,21 +56,18 @@ class Messages extends React.Component {
       if (userData.uuid == msg.uuid) {
         sent = "sent";
       }
-    //   if (msgs[epico].uuid == msgs[epico + 1].uuid) {
-    //     while (msgs[epico].uuid == msgs[epico + 1].uuid) {
-    //       console.log("same");
-        //   return (
-        //     <Message
-        //       name={msg.displayName}
-        //       message={msgs[epico].text + " <br/> " + msgs[epico + 1].text}
-        //       time={msg.timestamp}
-        //       pic={msg.pic}
-        //       key={uuidv4()}
-        //       clas={sent}
-        //     />
-        //   );
+      if (msgs[epico].uuid == msgs[epico - 1].uuid) {
+        // while (msgs[epico].uuid == msgs[epico + 1].uuid) {
+          console.log("same");
+          return (
+            <GroupMessage
+              message={msg.text}
+              key={uuidv4()}
+              clas={sent}
+            />
+          );
         // }
-    //   } else {
+      } else {
         return (
           <Message
             name={msg.displayName}
@@ -80,7 +78,7 @@ class Messages extends React.Component {
             clas={sent}
           />
         );
-    //   }
+      }
     });
 
     return (
