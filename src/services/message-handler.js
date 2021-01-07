@@ -17,10 +17,9 @@ const newMessage = {
    text: "< Error >"
 };
 
-async function sendMessage(text, who) {
+async function sendMessage(text) {
    newMessage.timestamp = Date.now();
    newMessage.text = text;
-   newMessage.who = who;
    newMessage.displayName = userData.displayName;
    newMessage.pic = userData.photoURL;
    newMessage.uuid = userData.uuid;
