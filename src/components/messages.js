@@ -4,7 +4,7 @@ import Message from "./message";
 import { sendMessage, messageList } from "../services/message-handler";
 import { store } from "../services/data-handler";
 import { v4 as uuidv4 } from "uuid";
-import {userData} from "../App"
+import { userData } from "../App";
 
 const messagesToShow = 75;
 
@@ -41,25 +41,46 @@ class Messages extends React.Component {
     }
   };
   render() {
+    let epico = 0;
     const msgs = store.getState().messages;
     while (msgs.length > messagesToShow) {
       msgs.shift();
+      //   epico++;
     }
     const messages = msgs.map((msg) => {
-		let sent;
-		if (userData.uuid == msg.uuid) {
-			sent = "sent";
-		}
-      return (
-        <Message
-          name={msg.displayName}
-          message={msg.text}
-          time={msg.timestamp}
-          pic={msg.pic}
-		  key={uuidv4()}
-		  clas={sent}
-        />
-      );
+      if (epico < 73) {
+        epico++;
+      }
+      let sent;
+      if (userData.uuid == msg.uuid) {
+        sent = "sent";
+      }
+    //   if (msgs[epico].uuid == msgs[epico + 1].uuid) {
+    //     while (msgs[epico].uuid == msgs[epico + 1].uuid) {
+    //       console.log("same");
+        //   return (
+        //     <Message
+        //       name={msg.displayName}
+        //       message={msgs[epico].text + " <br/> " + msgs[epico + 1].text}
+        //       time={msg.timestamp}
+        //       pic={msg.pic}
+        //       key={uuidv4()}
+        //       clas={sent}
+        //     />
+        //   );
+        // }
+    //   } else {
+        return (
+          <Message
+            name={msg.displayName}
+            message={msg.text}
+            time={msg.timestamp}
+            pic={msg.pic}
+            key={uuidv4()}
+            clas={sent}
+          />
+        );
+    //   }
     });
 
     return (
