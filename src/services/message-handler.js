@@ -10,9 +10,7 @@ if (store.getState().channels == undefined || store.getState().channels[activeCh
    activeChannel.id = 0;
 }
 
-let USE_TESTING_DB = true;
-
-let col = USE_TESTING_DB ? "messages-test" : "messages";
+let Firestore_Message_Collection = "messages-test";
 
 let messageList = [];
 
@@ -32,10 +30,10 @@ async function sendMessage(text) {
    newMessage.pic = userData.photoURL;
    newMessage.uuid = userData.uuid;
    newMessage.channel = activeChannel.id;
-   await db.collection(col).doc("message-" + mCount).set(newMessage);
+   await db.collection(Firestore_Message_Collection).doc("message-" + mCount).set(newMessage);
 }
 
-db.collection(col).orderBy("timestamp", "asc").onSnapshot(function (messages) {
+db.collection(Firestore_Message_Collection).orderBy("timestamp", "asc").onSnapshot(function (messages) {
    let ml = [];
    messages.forEach(function (doc) {
       ml.push(doc.data());
@@ -49,7 +47,7 @@ db.collection(col).orderBy("timestamp", "asc").onSnapshot(function (messages) {
 });
 
 async function getAllMessages() {
-   let messages = await db.collection(col).orderBy("timestamp", "asc").get();
+   let messages = await db.collection(Firestore_Message_Collection).orderBy("timestamp", "asc").get();
    let ml = [];
    messages.forEach(function (doc) {
       ml.push(doc.data());
