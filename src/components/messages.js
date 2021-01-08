@@ -5,7 +5,11 @@ import { sendMessage, messageList } from "../services/message-handler";
 import { store } from "../services/data-handler";
 import { v4 as uuidv4 } from "uuid";
 import { userData } from "../App";
-import { GroupMessage } from './groupMessage'
+import {
+  GroupMessage,
+  TopGroupMessage,
+  BottomGroupMessage,
+} from "./groupMessage";
 
 const messagesToShow = 75;
 
@@ -44,29 +48,65 @@ class Messages extends React.Component {
   render() {
     let epico = 0;
     const msgs = store.getState().messages;
+    console.log(msgs);
     while (msgs.length > messagesToShow) {
       msgs.shift();
-      //   epico++;
     }
     const messages = msgs.map((msg) => {
-      if (epico < 73) {
+      if (epico < 73 && epico < msgs.length - 2) {
         epico++;
+        console.log(epico);
+        console.log(msgs[epico].text);
       }
       let sent;
       if (userData.uuid == msg.uuid) {
         sent = "sent";
       }
-      if (msgs[epico].uuid == msgs[epico - 1].uuid) {
-        // while (msgs[epico].uuid == msgs[epico + 1].uuid) {
-          console.log("same");
+      if (msgs.length > 2) {
+        if (
+          msgs[epico].uuid == msgs[epico + 1].uuid &&
+          msgs[epico].uuid !== msgs[epico - 1].uuid
+        ) {
+          console.log("this is for some reason the bottom");
           return (
-            <GroupMessage
+            <BottomGroupMessage message={msg.text} key={uuidv4()} clas={sent} pic={msg.pic}/>
+          );
+        } else if (
+          msgs[epico].uuid != msgs[epico - 1].uuid &&
+          msgs[epico].uuid == msgs[epico + 1].uuid
+        ) {
+          console.log("bruh");
+          return (
+            <TopGroupMessage
+              pic={msg.pic}
               message={msg.text}
+              key={uuidv4()}
+              clas={sent}
+              name={msg.displayName}
+            />
+          );
+        } else if (msgs[epico].uuid == msgs[epico - 1].uuid) {
+          if (msgs[epico].uuid == msgs[epico + 1].uuid) {
+            return (
+              <GroupMessage message={msg.text} key={uuidv4()} clas={sent} />
+            );
+          } else {
+            return (
+              <GroupMessage message={msg.text} key={uuidv4()} clas={sent} />
+            );
+          }
+        } else {
+          return (
+            <Message
+              name={msg.displayName}
+              message={msg.text}
+              time={msg.timestamp}
+              pic={msg.pic}
               key={uuidv4()}
               clas={sent}
             />
           );
-        // }
+        }
       } else {
         return (
           <Message

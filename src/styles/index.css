@@ -106,6 +106,7 @@ main {
   width: fit-content;
   max-width: 60vw;
   margin: 0 0.5em;
+  min-height: 1.5em;
 }
 .messages .chat .groupMessage {
   margin-top: 0;
@@ -117,9 +118,14 @@ main {
 }
 .messages .chat .groupMessage .message p {
   border-radius: 0 1.25em 1.25em 0;
+  margin: 0;
 }
 .messages .chat .groupMessage .message img {
   opacity: 0;
+  padding: 0.25em 0.5em;
+}
+.messages .chat .groupMessage .message .topImg {
+  opacity: 1;
 }
 .messages .chat .groupMessage.sent {
   margin-top: 0;
@@ -131,6 +137,9 @@ main {
 }
 .messages .chat .groupMessage.sent .message p {
   border-radius: 1.25em 0 0 1.25em;
+}
+.messages .chat .groupMessage.sent .message img {
+  padding: 0.25em 0;
 }
 .messages .sendMessage {
   position: absolute;
