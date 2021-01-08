@@ -3,8 +3,9 @@ import { Link, useHistory } from "react-router-dom";
 import PrivateRoute from "../Routing/PrivateRoute";
 import { signout } from "../helpers/auth";
 import "../styles/index.css";
-import Channels from "../components/channels";
+import ChannelList from "../components/ChannelList";
 import Messages from "../components/messages";
+import Channels from "../components/Channels";
 
 // Main page
 // This will house the chat and channels, and give links to profile and other pages
@@ -25,8 +26,9 @@ const Main = (props) => {
         )}
       </header>
       <main>
-        <Channels />
-        <Messages/>
+        <ChannelList />
+           <Messages />
+           <Channels/>
       </main>
     </div>
   );

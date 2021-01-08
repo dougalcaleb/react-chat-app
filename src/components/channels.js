@@ -1,18 +1,15 @@
 import React from "react";
-import '../styles/index.css'
+import { store } from "../services/data-handler";
+import Channel from "./channel";
 
-const Channels = () => {
-    return(
-        <div className="channels">
-            <h3>Channels</h3>
-            <ul>
-                <li className="active">epic channel</li>
-                <li>cool one</li>
-                <li>frik</li>
-                <li>in sick doood</li>
-            </ul>
-        </div>
-    )
+class Channels extends React.Component {
+   render() {
+      const c = store.getState().channels;
+      const chans = c.map((channel) => {
+
+      });
+      return ();
+   }
 }
 
-export default Channels
+export default Channels;

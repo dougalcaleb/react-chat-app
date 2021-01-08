@@ -34,7 +34,7 @@ db.collection("messages").orderBy("timestamp", "asc").onSnapshot(function (messa
    for (let a = 0; a < knownMessages; a++) {
       ml.shift();
    }
-   store.dispatch({ type: "UPLOAD", messages: ml });
+   store.dispatch({ type: "UPDATE_STORE", messages: ml });
    knownMessages += ml.length;
    mCount += ml.length;
 });
