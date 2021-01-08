@@ -185,4 +185,12 @@ main {
   text-decoration: none;
 }
 
+.activeChannel {
+  visibility: visible;
+}
+
+.inactiveChannel {
+  visibility: hidden;
+}
+
 /*# sourceMappingURL=index.css.map */
