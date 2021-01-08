@@ -10,6 +10,7 @@ if (store.getState().channels == undefined || store.getState().channels[activeCh
    activeChannel.id = 0;
 }
 
+// Send to and recieve from this collection
 let Firestore_Message_Collection = "messages-test";
 
 let messageList = [];
