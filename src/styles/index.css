@@ -88,6 +88,7 @@ main {
 .messages .chat .sent .message img {
   margin-left: 0.5em;
   padding: 0.25em 0;
+  background: white;
 }
 .messages .chat .sent .message p {
   background: #0f3460;
@@ -105,6 +106,31 @@ main {
   width: fit-content;
   max-width: 60vw;
   margin: 0 0.5em;
+}
+.messages .chat .groupMessage {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.messages .chat .groupMessage .message {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.messages .chat .groupMessage .message p {
+  border-radius: 0 1.25em 1.25em 0;
+}
+.messages .chat .groupMessage .message img {
+  opacity: 0;
+}
+.messages .chat .groupMessage.sent {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.messages .chat .groupMessage.sent .message {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.messages .chat .groupMessage.sent .message p {
+  border-radius: 1.25em 0 0 1.25em;
 }
 .messages .sendMessage {
   position: absolute;
