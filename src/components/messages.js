@@ -6,8 +6,9 @@ import { store } from "../services/data-handler";
 import { v4 as uuidv4 } from "uuid";
 import { userData } from "../App";
 import { GroupMessage } from './groupMessage'
+import { activeChannel } from "../services/message-handler";
 
-const messagesToShow = 75;
+export const messagesToShow = 75;
 
 class Messages extends React.Component {
   constructor(props) {
@@ -30,7 +31,8 @@ class Messages extends React.Component {
     });
   };
 
-  handleMessageSend = () => {
+   handleMessageSend = () => {
+     console.log("message:",document.querySelector(".pendingMessage"))
     sendMessage(document.querySelector(".pendingMessage").value);
     document.querySelector(".pendingMessage").value = "";
   };
@@ -43,11 +45,13 @@ class Messages extends React.Component {
   };
   render() {
     let epico = 0;
-    const msgs = store.getState().messages;
+    const msgs = store.getState().channels[activeChannel.id].messages;
     while (msgs.length > messagesToShow) {
       msgs.shift();
       //   epico++;
-    }
+     }
+     console.log("Trimmed msgs. Outputting:");
+     console.log(msgs);
     const messages = msgs.map((msg) => {
       if (epico < 73) {
         epico++;
@@ -56,18 +60,21 @@ class Messages extends React.Component {
       if (userData.uuid == msg.uuid) {
         sent = "sent";
       }
-      if (msgs[epico].uuid == msgs[epico - 1].uuid) {
-        // while (msgs[epico].uuid == msgs[epico + 1].uuid) {
-          console.log("same");
-          return (
-            <GroupMessage
-              message={msg.text}
-              key={uuidv4()}
-              clas={sent}
-            />
-          );
-        // }
-      } else {
+      //  if (msgs[epico - 1] && msgs[epico]) {
+      //     if (msgs[epico].uuid == msgs[epico - 1].uuid) {
+      //       console.log("same");
+      //     return (
+      //       <GroupMessage
+      //         message={msg.text}
+      //         key={uuidv4()}
+      //         clas={sent}
+      //       />
+      //     );
+      //    }
+      //   // while (msgs[epico].uuid == msgs[epico + 1].uuid) {
+          
+      //   // }
+      // } else {
         return (
           <Message
             name={msg.displayName}
@@ -78,7 +85,7 @@ class Messages extends React.Component {
             clas={sent}
           />
         );
-      }
+      // }
     });
 
     return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PrivateRoute from "../Routing/PrivateRoute";
 import { signout } from "../helpers/auth";
 import "../styles/index.css";
@@ -27,7 +27,7 @@ const Main = (props) => {
       </header>
       <main>
         <ChannelList />
-           <Messages />
+           {/* <Messages /> */}
            <Channels/>
       </main>
     </div>

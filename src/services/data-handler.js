@@ -4,15 +4,60 @@ import { createStore } from "redux";
 // const combined = combineReducers(messageReducer);
 const store = createStore(updateStore);
 
-function updateStore(state = { messages: [], channels: [] }, action) {
+function updateStore(state = { channels: [{name: "", messages: []}] }, action) {
    console.log("update:");
    console.log(state);
    console.log(action);
    if (action.messages) {
-      return { messages: state.messages.concat(action.messages), channels: [] };
+      return sortMessages(action.messages, state);
+      // return { messages: state.messages.concat(action.messages), channels: [] };
    } else {
-      return { messages: [], channels: [] };
+      return { channels: [{name: "", messages: []}] };
    }
 }
 
+function sortMessages(ml, state) {
+   console.log("Sorting new messages. Operating with arguments: (ml / state)");
+   console.log(ml);
+   console.log(state);
+
+   let sorted = { channels: state.channels };
+
+   for (let a = 0; a < ml.length; a++) {
+      if (!sorted.channels[ml[a].channel]) {
+         console.log("Starting a new channel:", ml[a].channel);
+         sorted.channels[ml[a].channel] = { name: "", messages: [] };
+      }
+      sorted.channels[ml[a].channel].messages.push(ml[a]);
+   }
+
+   for (let b = 0; b < ml.length; b++) {
+      if (!sorted.channels[b]) {
+         sorted.channels[b] = { name: "", messages: [] };
+      }
+   }
+
+   console.log("Messages were sorted. Outputting new state: ");
+   console.log(sorted);
+
+   return sorted;
+}
+
 export { updateStore, store };
+
+/*
+
+state: {
+   channels: {
+      id: {
+         name: "",
+         messages: []
+      },
+      id: {
+         name: "",
+         messages: []
+      }
+   }
+}
+
+*/
