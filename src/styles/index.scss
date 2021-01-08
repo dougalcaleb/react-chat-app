@@ -44,6 +44,7 @@ header {
     width: 20vw;
     padding: 2em;
     height: calc(100vh - 10em);
+    position: relative;
 }
 
 main {
@@ -221,4 +222,20 @@ main {
 
 .inactiveChannel {
    visibility: hidden;
+}
+
+.channel-list li {
+   list-style-type: none;
+   cursor: pointer;
+   margin-left: -42px;
+   transition: 0.2s;
+   &:hover {
+      margin-left: -30px;
+   }
+}
+
+.channel-tools {
+   width: 100%;
+   position: relative;
+   bottom: 0px;
 }

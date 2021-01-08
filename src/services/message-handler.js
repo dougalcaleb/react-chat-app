@@ -6,7 +6,7 @@ let mCount = 0;
 let knownMessages = 0;
 export let activeChannel = { id: 2, name: "" };
 
-if (store.getState().messages == undefined || store.getState().messages[activeChannel.id] == undefined) {
+if (store.getState().channels == undefined || store.getState().channels[activeChannel.id] == undefined) {
    activeChannel.id = 0;
 }
 
@@ -43,7 +43,7 @@ db.collection(col).orderBy("timestamp", "asc").onSnapshot(function (messages) {
    for (let a = 0; a < knownMessages; a++) {
       ml.shift();
    }
-   store.dispatch({ type: "UPDATE_STORE", messages: ml });
+   store.dispatch({ type: "UPDATE_MSGS", messages: ml });
    knownMessages += ml.length;
    mCount += ml.length;
 });

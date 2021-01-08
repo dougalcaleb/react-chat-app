@@ -34,6 +34,7 @@ header .links a {
   width: 20vw;
   padding: 2em;
   height: calc(100vh - 10em);
+  position: relative;
 }
 
 main {
@@ -193,4 +194,18 @@ main {
   visibility: hidden;
 }
 
-/*# sourceMappingURL=index.css.map */
+.channel-list li {
+  list-style-type: none;
+  cursor: pointer;
+  margin-left: -42px;
+  transition: 0.2s;
+}
+.channel-list li:hover {
+  margin-left: -30px;
+}
+
+.channel-tools {
+  width: 100%;
+  position: relative;
+  bottom: 0px;
+}
