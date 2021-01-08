@@ -1,18 +1,27 @@
 import React from "react";
-import '../styles/index.css'
+import { store } from "../services/data-handler";
+import Channel from "./channel";
+import { v4 as uuidv4 } from "uuid";
 
-const Channels = () => {
-    return(
-        <div className="channels">
-            <h3>Channels</h3>
-            <ul>
-                <li className="active">epic channel</li>
-                <li>cool one</li>
-                <li>frik</li>
-                <li>in sick doood</li>
-            </ul>
-        </div>
-    )
+class Channels extends React.Component {
+   render() {
+      console.log("state is");
+      console.log(store.getState());
+      let num = -1;
+      const c = store.getState().channels;
+      const chans = c.map((channel) => {
+         num++;
+         if (store.getState().channels[num]) {
+            return <Channel channelId={num} key={uuidv4()}/>;
+         }
+         return;
+      });
+      return (
+         <div className="channel">
+            {chans}
+         </div>
+      );
+   }
 }
 
-export default Channels
+export default Channels;

@@ -210,3 +210,15 @@ main {
         text-decoration: none;
     }
 }
+
+
+// channels
+
+
+.activeChannel {
+   visibility: visible;
+}
+
+.inactiveChannel {
+   visibility: hidden;
+}

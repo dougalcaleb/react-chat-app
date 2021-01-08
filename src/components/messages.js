@@ -10,8 +10,9 @@ import {
   TopGroupMessage,
   BottomGroupMessage,
 } from "./groupMessage";
+import { activeChannel } from "../services/message-handler";
 
-const messagesToShow = 75;
+export const messagesToShow = 75;
 
 class Messages extends React.Component {
   constructor(props) {
@@ -34,7 +35,8 @@ class Messages extends React.Component {
     });
   };
 
-  handleMessageSend = () => {
+   handleMessageSend = () => {
+     console.log("message:",document.querySelector(".pendingMessage"))
     sendMessage(document.querySelector(".pendingMessage").value);
     document.querySelector(".pendingMessage").value = "";
   };
@@ -47,11 +49,13 @@ class Messages extends React.Component {
   };
   render() {
     let epico = 0;
-    const msgs = store.getState().messages;
-    console.log(msgs);
+    const msgs = store.getState().channels[activeChannel.id].messages;
     while (msgs.length > messagesToShow) {
       msgs.shift();
-    }
+        epico++;
+     }
+     console.log("Trimmed msgs. Outputting:");
+     console.log(msgs);
     const messages = msgs.map((msg) => {
       if (epico < 73 && epico < msgs.length - 2) {
         epico++;
@@ -118,7 +122,7 @@ class Messages extends React.Component {
             clas={sent}
           />
         );
-      }
+      // }
     });
 
     return (

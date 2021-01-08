@@ -1,19 +1,27 @@
 import { db } from "./firebase";
 import { userData } from "../App";
-import Messages from "../components/messages";
-import { newMessage as createNewMessage } from "../components/messages";
-import { updateStore, store } from "./data-handler";
+import { store } from "./data-handler";
 
 let mCount = 0;
 let knownMessages = 0;
+export let activeChannel = { id: 2, name: "" };
+
+if (store.getState().messages == undefined || store.getState().messages[activeChannel.id] == undefined) {
+   activeChannel.id = 0;
+}
+
+let USE_TESTING_DB = true;
+
+let col = USE_TESTING_DB ? "messages-test" : "messages";
 
 let messageList = [];
 
-const newMessage = {
+let newMessage = {
    displayName: "Unknown",
    timestamp: 0,
    pic: null,
    uuid: null,
+   channel: null,
    text: "< Error >"
 };
 
@@ -23,10 +31,11 @@ async function sendMessage(text) {
    newMessage.displayName = userData.displayName;
    newMessage.pic = userData.photoURL;
    newMessage.uuid = userData.uuid;
-   await db.collection("messages").doc("message-" + mCount).set(newMessage);
+   newMessage.channel = activeChannel.id;
+   await db.collection(col).doc("message-" + mCount).set(newMessage);
 }
 
-db.collection("messages").orderBy("timestamp", "asc").onSnapshot(function (messages) {
+db.collection(col).orderBy("timestamp", "asc").onSnapshot(function (messages) {
    let ml = [];
    messages.forEach(function (doc) {
       ml.push(doc.data());
@@ -34,13 +43,13 @@ db.collection("messages").orderBy("timestamp", "asc").onSnapshot(function (messa
    for (let a = 0; a < knownMessages; a++) {
       ml.shift();
    }
-   store.dispatch({ type: "UPLOAD", messages: ml });
+   store.dispatch({ type: "UPDATE_STORE", messages: ml });
    knownMessages += ml.length;
    mCount += ml.length;
 });
 
 async function getAllMessages() {
-   let messages = await db.collection("messages").orderBy("timestamp", "asc").get();
+   let messages = await db.collection(col).orderBy("timestamp", "asc").get();
    let ml = [];
    messages.forEach(function (doc) {
       ml.push(doc.data());
