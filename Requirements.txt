@@ -24,6 +24,7 @@
 [ ] Bonus: On the profile page be able to update your account info
 
 TO DO:
-- Fix messages in input box
+- Fix messages generating in input box
 - Be able to navigate through channels
-- Include channel name in messages or update db
+- Make channels generate correctly
+   - New collection with channel info?
