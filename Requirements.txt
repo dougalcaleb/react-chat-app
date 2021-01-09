@@ -1,4 +1,4 @@
-[ ] Use Redux to implement a data store
+[X] Use Redux to implement a data store
     - Use actions to dispatch data to reducers
     - Use reducers to manipulate the store data
     - Use getters to retrieve data from your store
@@ -7,11 +7,11 @@
 
 [ ] Use the react hooks useState and useEffect
 
-[ ] Use a form input to add channels and messages
+[X] Use a form input to add channels and messages
 
 [X] 10 components or more
 
-[ ] Use Router to navigate
+[X] Use Router to navigate
 	- Use routes to change pages
 	- Use route parameters to pass props to a component
 
@@ -22,3 +22,8 @@
 [ ] Grade teammate their effort on the project
 
 [ ] Bonus: On the profile page be able to update your account info
+
+TO DO:
+- Fix messages in input box
+- Be able to navigate through channels
+- Include channel name in messages or update db

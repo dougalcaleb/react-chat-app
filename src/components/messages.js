@@ -10,7 +10,7 @@ import {
   TopGroupMessage,
   BottomGroupMessage,
 } from "./groupMessage";
-import { activeChannel } from "../services/message-handler";
+// import { activeChannel } from "../services/message-handler";
 
 export const messagesToShow = 75;
 
@@ -28,8 +28,8 @@ class Messages extends React.Component {
   };
 
   handleNewMessage = () => {
-    console.log("Store was updated. Outputting new messages list:");
-    console.log(store.getState().messages);
+    console.log("Store was updated. Outputting new STATE:");
+    console.log(store.getState());
     this.setState({
       messages: store.getState().messages,
     });
@@ -47,9 +47,10 @@ class Messages extends React.Component {
         break;
     }
   };
-  render() {
+   render() {
+      console.log("messages in current channel:", store.getState().channels[store.getState().activeChannel].messages);
     let epico = 0;
-    const msgs = store.getState().channels[activeChannel.id].messages;
+    const msgs = store.getState().channels[store.getState().activeChannel].messages;
     while (msgs.length > messagesToShow) {
       msgs.shift();
         epico++;

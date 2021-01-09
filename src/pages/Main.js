@@ -28,7 +28,7 @@ const Main = (props) => {
       <main>
         <ChannelList />
            {/* <Messages /> */}
-           <Channels/>
+         <Channels/>
       </main>
     </div>
   );

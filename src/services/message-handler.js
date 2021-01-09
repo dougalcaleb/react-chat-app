@@ -4,11 +4,11 @@ import { store } from "./data-handler";
 
 let mCount = 0;
 let knownMessages = 0;
-export let activeChannel = { id: 2, name: "" };
+// export let activeChannel = { id: 0, name: "" };
 
-if (store.getState().channels == undefined || store.getState().channels[activeChannel.id] == undefined) {
-   activeChannel.id = 0;
-}
+// if (store.getState().channels == undefined || store.getState().channels[activeChannel.id] == undefined) {
+//    activeChannel.id = 0;
+// }
 
 // Send to and recieve from this collection
 let Firestore_Message_Collection = "messages-test";
@@ -30,7 +30,7 @@ async function sendMessage(text) {
    newMessage.displayName = userData.displayName;
    newMessage.pic = userData.photoURL;
    newMessage.uuid = userData.uuid;
-   newMessage.channel = activeChannel.id;
+   newMessage.channel = store.getState().activeChannel;
    await db.collection(Firestore_Message_Collection).doc("message-" + mCount).set(newMessage);
 }
 

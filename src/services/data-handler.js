@@ -4,23 +4,27 @@ import { createStore } from "redux";
 // const combined = combineReducers(messageReducer);
 const store = createStore(updateStore);
 
-function updateStore(state = { channels: [{ name: "general", messages: [] }] }, action) {
+function updateStore(state = { channels: [{ name: "general", id: 0, messages: [] }], activeChannel: 0 }, action) {
    switch (action.type) {
       case "UPDATE_MSGS":
-         console.log("update:");
-         console.log(state);
-         console.log(action);
+         // console.log("update:");
+         // console.log(state);
+         // console.log(action);
          if (action.messages) {
-            return sortMessages(action.messages, state);
+            let sortedMsgs = sortMessages(action.messages, state);
+            sortedMsgs.activeChannel = state.activeChannel;
+            return sortedMsgs;
             // return { messages: state.messages.concat(action.messages), channels: [] };
          } else {
-            return { channels: [{name: "general", messages: []}] };
+            return { channels: [{ name: "general", id: 0, messages: [] }], activeChannel: 0 };
          }
       case "UPDATE_CHNLS":
-         console.log("Updating channels. Current/Action:");
-         console.log(state);
-         console.log(action);
-         return { channels: [...state.channels, { name: action.channelName, messages: [] }] };
+         // console.log("Updating channels. Current/Action:");
+         // console.log(state);
+         // console.log(action);
+         return { channels: [...state.channels, { name: action.channelName, messages: [], id: state.channels.length }], activeChannel: state.activeChannel };
+      case "SWITCH_CHNL":
+         return { channels: state.channels, activeChannel: action.switchToChannel };
       default:
          return state;
    }
@@ -43,7 +47,7 @@ function sortMessages(ml, state) {
 
    for (let b = 0; b < ml.length; b++) {
       if (!sorted.channels[ml[b].channel]) {
-         sorted.channels[b] = { name: "", messages: [] };
+         sorted.channels[b] = { name: "", id: -1, messages: [] };
       }
    }
 
