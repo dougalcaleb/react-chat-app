@@ -51,7 +51,18 @@ class ChannelList extends React.Component {
          newChannel(document.querySelector(".new-channel-input").value);
          document.querySelector(".new-channel-input").value = "";
 		}
-	};
+   };
+   
+
+   //! PROBLEMS:
+   /*
+   - Only one onClick event per element, but the li needs two: one for dispatching to the store and one for giving it active class styling. Both functionalities need to be consolidated into one function.
+   - Input box is not being cleared when sending a message
+   */
+
+
+
+
    render() {
       const listOfChannels = store.getState().channels.map((c) => {
          return <li onClick={() => this.switchToChannel(c.id, c.name)} onClick={this.setActiveStyle} key={uuidv4()} className={c.id == 0 ? "active-channel-name" : ""}>{c.name}</li>;
