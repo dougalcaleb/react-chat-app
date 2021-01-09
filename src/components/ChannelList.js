@@ -36,7 +36,7 @@ class ChannelList extends React.Component {
    }
 
 	createNewChannel = () => {
-		if (document.querySelector(".new-channel-input").value != "") {
+		if (document.querySelector(".new-channel-input").value !== "") {
 			store.dispatch({type: "UPDATE_CHNLS", channelName: document.querySelector(".new-channel-input").value});
 			document.querySelector(".new-channel-input").value = "";
 			console.log("Updated Channels. State:");
@@ -44,9 +44,7 @@ class ChannelList extends React.Component {
 		}
 	};
    render() {
-      let idx = -1;
       const listOfChannels = store.getState().channels.map((c) => {
-         idx++;
          return <li onClick={() => this.switchToChannel(c.id, c.name) }>{c.name}</li>;
 		});
 		return (

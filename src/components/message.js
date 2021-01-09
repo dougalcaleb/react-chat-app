@@ -33,7 +33,7 @@ export class Message extends Component {
       <div className={this.props.clas + " messageWrap"}>
         <h6>{this.props.name}</h6>
         <div className="message">
-          <img src={this.props.pic} />
+          <img src={this.props.pic} alt=""/>
           <p className="Message">{this.props.message}</p>
         </div>
         <h6>{this.getTime(Date.now() - (Date.now() - this.props.time))}</h6>

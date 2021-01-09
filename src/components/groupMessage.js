@@ -6,7 +6,7 @@ export class GroupMessage extends Component {
     return (
       <div className={this.props.clas + " messageWrap groupMessage"}>
         <div className="message">
-          <img />
+          <img alt=""/>
           <p className="Message">{this.props.message}</p>
         </div>
       </div>
@@ -19,7 +19,7 @@ export class TopGroupMessage extends Component {
       <div className={this.props.clas + " messageWrap groupMessage"}>
         <h6>{this.props.name}</h6>
         <div className="message">
-        <img src={this.props.pic} className="topImg"/>
+        <img src={this.props.pic} className="topImg" alt=""/>
           <p className="Message">{this.props.message}</p>
         </div>
       </div>
@@ -57,7 +57,7 @@ export class BottomGroupMessage extends Component {
     return (
       <div className={this.props.clas + " messageWrap groupMessage"}>
         <div className="message">
-        <img src={this.props.pic} className="topImg"/>
+        <img src={this.props.pic} className="topImg" alt=""/>
           <p className="Message">{this.props.message}</p>
         </div>
         <h6>{this.getTime(Date.now() - (Date.now() - this.props.time))}</h6>

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/index.css";
 import Message from "./message";
-import {sendMessage, messageList} from "../services/message-handler";
+import {sendMessage} from "../services/message-handler";
 import {store} from "../services/data-handler";
 import {v4 as uuidv4} from "uuid";
 import {userData} from "../App";
@@ -66,18 +66,18 @@ class Messages extends React.Component {
 				//   console.log(msgs[epico].text);
 			}
 			let sent;
-			if (userData.uuid == msg.uuid) {
+			if (userData.uuid === msg.uuid) {
 				sent = "sent";
 			}
 			if (msgs.length > 2) {
-				if (msgs[epico].uuid == msgs[epico + 1].uuid && msgs[epico].uuid !== msgs[epico - 1].uuid) {
+				if (msgs[epico].uuid === msgs[epico + 1].uuid && msgs[epico].uuid !== msgs[epico - 1].uuid) {
 					//   console.log("this is for some reason the bottom");
 					return <BottomGroupMessage message={msg.text} key={uuidv4()} clas={sent} pic={msg.pic} />;
-				} else if (msgs[epico].uuid != msgs[epico - 1].uuid && msgs[epico].uuid == msgs[epico + 1].uuid) {
+				} else if (msgs[epico].uuid !== msgs[epico - 1].uuid && msgs[epico].uuid === msgs[epico + 1].uuid) {
 					console.log("bruh");
 					return <TopGroupMessage pic={msg.pic} message={msg.text} key={uuidv4()} clas={sent} name={msg.displayName} />;
-				} else if (msgs[epico].uuid == msgs[epico - 1].uuid) {
-					if (msgs[epico].uuid == msgs[epico + 1].uuid) {
+				} else if (msgs[epico].uuid === msgs[epico - 1].uuid) {
+					if (msgs[epico].uuid === msgs[epico + 1].uuid) {
 						return <GroupMessage message={msg.text} key={uuidv4()} clas={sent} />;
 					} else {
 						return <GroupMessage message={msg.text} key={uuidv4()} clas={sent} />;
@@ -94,7 +94,7 @@ class Messages extends React.Component {
 			<div className="messages">
 				<div className="chat">{messages}</div>
 				<div className="sendMessage">
-					<input type="text" placeholder="Message epic channel" className="pendingMessage" onKeyPress={this.handleKeyDown} />
+					<input type="text" placeholder="Message channel" className="pendingMessage" onKeyPress={this.handleKeyDown} />
 					<button onClick={this.handleMessageSend}>Send</button>
 				</div>
 			</div>
