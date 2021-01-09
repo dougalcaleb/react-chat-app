@@ -15,7 +15,8 @@ class Messages extends React.Component {
 	constructor(props) {
 		super(props);
 		this.unsub = null;
-		this.throttler = 0;
+      this.throttler = 0;
+      this.text = "";
 	}
 	componentDidMount = () => {
 		this.unsub = store.subscribe(this.handleNewMessage);
@@ -36,8 +37,8 @@ class Messages extends React.Component {
    handleMessageSend = () => {
       if (Date.now() - this.throttler > throttleTime) {
          // console.log(`${Date.now()} - ${this.throttler} = ${Date.now() - this.throttler}`);
-         // console.log("message:", document.querySelector(".pendingMessage"));
-		   sendMessage(document.querySelector(".pendingMessage").value);
+         // console.log("message:", document.querySelector(".pendingMessage").value);
+		   sendMessage(this.text);
          document.querySelector(".pendingMessage").value = "";
          this.throttler = Date.now();
       }
@@ -46,9 +47,12 @@ class Messages extends React.Component {
 		switch (e.key) {
 			case "Enter":
 				this.handleMessageSend();
-				break;
+            break;
 		}
-	};
+   };
+   handleKeyPress = (e) => {
+      this.text = e.target.value;
+   }
 	render() {
 		// console.log("messages in current channel:", store.getState().channels[store.getState().activeChannel].messages);
 		let epico = 0;
@@ -94,11 +98,12 @@ class Messages extends React.Component {
 			<div className="messages">
 				<div className="chat">{messages}</div>
 				<div className="sendMessage">
-					<input type="text" placeholder="Message channel" className="pendingMessage" onKeyPress={this.handleKeyDown} />
+					<input type="text" placeholder="Message channel" className="pendingMessage" onKeyPress={this.handleKeyDown} onKeyUp={this.handleKeyPress} />
 					<button onClick={this.handleMessageSend}>Send</button>
 				</div>
 			</div>
 		);
 	}
 }
+
 export default Messages;

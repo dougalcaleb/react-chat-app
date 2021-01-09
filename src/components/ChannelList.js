@@ -36,6 +36,12 @@ class ChannelList extends React.Component {
    switchToChannel = (id, name) => {
       store.dispatch({type: "SWITCH_CHNL", switchToChannel: id});
    }
+   
+   setActiveStyle = (e) => {
+      console.log(e.target);
+      document.querySelector(".active-channel-name").classList.remove("active-channel-name");
+      e.target.classList.add("active-channel-name");
+   }
 
 	createNewChannel = () => {
 		if (document.querySelector(".new-channel-input").value !== "") {
@@ -48,7 +54,7 @@ class ChannelList extends React.Component {
 	};
    render() {
       const listOfChannels = store.getState().channels.map((c) => {
-         return <li onClick={() => this.switchToChannel(c.id, c.name) } key={uuidv4()}>{c.name}</li>;
+         return <li onClick={() => this.switchToChannel(c.id, c.name)} onClick={this.setActiveStyle} key={uuidv4()} className={c.id == 0 ? "active-channel-name" : ""}>{c.name}</li>;
 		});
 		return (
 			<div className="channels">

@@ -30,18 +30,18 @@ async function sendMessage(text) {
    await db.collection(Firestore_Message_Collection).doc("message-" + mCount).set(newMessage);
 }
 
-// db.collection(Firestore_Message_Collection).orderBy("timestamp", "asc").onSnapshot(function (messages) {
-//    let ml = [];
-//    messages.forEach(function (doc) {
-//       ml.push(doc.data());
-//    });
-//    for (let a = 0; a < knownMessages; a++) {
-//       ml.shift();
-//    }
-//    store.dispatch({ type: "UPDATE_MSGS", messages: ml });
-//    knownMessages += ml.length;
-//    mCount += ml.length;
-// });
+db.collection(Firestore_Message_Collection).orderBy("timestamp", "asc").onSnapshot(function (messages) {
+   let ml = [];
+   messages.forEach(function (doc) {
+      ml.push(doc.data());
+   });
+   for (let a = 0; a < knownMessages; a++) {
+      ml.shift();
+   }
+   store.dispatch({ type: "UPDATE_MSGS", messages: ml });
+   knownMessages += ml.length;
+   mCount += ml.length;
+});
 
 async function getAllMessages() {
    let messages = await db.collection(Firestore_Message_Collection).orderBy("timestamp", "asc").get();
@@ -95,6 +95,10 @@ async function getAllChannels() {
    channels.forEach(function (doc) {
       cl.push(doc.data());
    });
+   if (cl.length == 0) {
+      store.dispatch({ type: "CLR_CHNLS" });
+      await newChannel("general");
+   }
    store.dispatch({ type: "SET_CHNLS", data: cl });
    console.log("Got all channels:", cl);
 }
@@ -102,7 +106,12 @@ async function getAllChannels() {
 
 window.onload = () => {
    getAllChannels();
-   //getAllMessages();
+   getAllMessages();
+
+   setTimeout(() => {
+      console.log("Window has loaded. Outputting state:");
+      console.log(store.getState());
+   }, 2000);
 }
 
 export { sendMessage, getAllMessages, messageList, newChannel };

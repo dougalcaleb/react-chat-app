@@ -25,6 +25,8 @@ function updateStore(state = { channels: [{ name: "general", id: 0, messages: []
          return { channels: action.data, activeChannel: state.activeChannel };
       case "SWITCH_CHNL":
          return { channels: state.channels, activeChannel: action.switchToChannel };
+      case "CLR_CHNLS":
+         return { channels: [], activeChannel: 0 };
       default:
          return state;
    }

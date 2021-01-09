@@ -204,6 +204,11 @@ main {
   margin-left: -35px;
 }
 
+.active-channel-name {
+  background: white;
+  color: #333;
+}
+
 .channel-tools {
   width: 100%;
   position: relative;
