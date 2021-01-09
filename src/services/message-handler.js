@@ -11,7 +11,7 @@ let knownMessages = 0;
 // }
 
 // Send to and recieve from this collection
-let Firestore_Message_Collection = "messages-test";
+let Firestore_Message_Collection = "messages";
 
 let messageList = [];
 
