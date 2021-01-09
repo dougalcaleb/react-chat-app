@@ -26,8 +26,8 @@ class Messages extends React.Component {
 	};
 
 	handleNewMessage = () => {
-		console.log("Store was updated. Outputting new STATE:");
-		console.log(store.getState());
+		// console.log("Store was updated. Outputting new STATE:");
+		// console.log(store.getState());
 		this.setState({
 			messages: store.getState().messages,
 		});
@@ -35,8 +35,8 @@ class Messages extends React.Component {
 
    handleMessageSend = () => {
       if (Date.now() - this.throttler > throttleTime) {
-         console.log(`${Date.now()} - ${this.throttler} = ${Date.now() - this.throttler}`);
-         console.log("message:", document.querySelector(".pendingMessage"));
+         // console.log(`${Date.now()} - ${this.throttler} = ${Date.now() - this.throttler}`);
+         // console.log("message:", document.querySelector(".pendingMessage"));
 		   sendMessage(document.querySelector(".pendingMessage").value);
          document.querySelector(".pendingMessage").value = "";
          this.throttler = Date.now();
@@ -50,15 +50,15 @@ class Messages extends React.Component {
 		}
 	};
 	render() {
-		console.log("messages in current channel:", store.getState().channels[store.getState().activeChannel].messages);
+		// console.log("messages in current channel:", store.getState().channels[store.getState().activeChannel].messages);
 		let epico = 0;
 		const msgs = store.getState().channels[store.getState().activeChannel].messages;
 		while (msgs.length > messagesToShow) {
 			msgs.shift();
 			epico++;
 		}
-		console.log("Trimmed msgs. Outputting:");
-		console.log(msgs);
+		// console.log("Trimmed msgs. Outputting:");
+		// console.log(msgs);
 		const messages = msgs.map((msg) => {
 			if (epico < 73 && epico < msgs.length - 2) {
 				epico++;

@@ -13,7 +13,6 @@ function updateStore(state = { channels: [{ name: "general", id: 0, messages: []
             let sortedMsgs = sortMessages(action.messages, state);
             sortedMsgs.activeChannel = state.activeChannel;
             return sortedMsgs;
-            // return { messages: state.messages.concat(action.messages), channels: [] };
          } else {
             return { channels: [{ name: "general", id: 0, messages: [] }], activeChannel: 0 };
          }
@@ -22,6 +21,8 @@ function updateStore(state = { channels: [{ name: "general", id: 0, messages: []
          // console.log(state);
          // console.log(action);
          return { channels: [...state.channels, { name: action.channelName, messages: [], id: state.channels.length }], activeChannel: state.activeChannel };
+      case "SET_CHNLS":
+         return { channels: action.data, activeChannel: state.activeChannel };
       case "SWITCH_CHNL":
          return { channels: state.channels, activeChannel: action.switchToChannel };
       default:

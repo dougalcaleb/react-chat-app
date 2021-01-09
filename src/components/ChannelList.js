@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/index.css";
 import { store } from "../services/data-handler";
+import { newChannel } from "../services/message-handler";
+import { v4 as uuidv4 } from "uuid";
 // import { activeChannel } from "../services/message-handler";
 
 class ChannelList extends React.Component {
@@ -37,15 +39,16 @@ class ChannelList extends React.Component {
 
 	createNewChannel = () => {
 		if (document.querySelector(".new-channel-input").value !== "") {
-			store.dispatch({type: "UPDATE_CHNLS", channelName: document.querySelector(".new-channel-input").value});
-			document.querySelector(".new-channel-input").value = "";
-			console.log("Updated Channels. State:");
-			console.log(store.getState());
+			// store.dispatch({type: "UPDATE_CHNLS", channelName: document.querySelector(".new-channel-input").value});
+			// console.log("Updated Channels. State:");
+         // console.log(store.getState());
+         newChannel(document.querySelector(".new-channel-input").value);
+         document.querySelector(".new-channel-input").value = "";
 		}
 	};
    render() {
       const listOfChannels = store.getState().channels.map((c) => {
-         return <li onClick={() => this.switchToChannel(c.id, c.name) }>{c.name}</li>;
+         return <li onClick={() => this.switchToChannel(c.id, c.name) } key={uuidv4()}>{c.name}</li>;
 		});
 		return (
 			<div className="channels">
