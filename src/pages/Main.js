@@ -5,6 +5,7 @@ import {signout} from "../helpers/auth";
 import "../styles/index.css";
 import ChannelList from "../components/ChannelList";
 import Channels from "../components/Channels";
+import Messages from "../components/messages";
 
 // Main page
 // This will house the chat and channels, and give links to profile and other pages
@@ -28,7 +29,8 @@ const Main = (props) => {
 			</header>
 			<main>
 				<ChannelList />
-				<Channels />
+            {/* <Channels /> */}
+            <Messages />
 			</main>
 		</div>
 	);
