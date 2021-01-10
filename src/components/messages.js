@@ -5,7 +5,7 @@ import {sendMessage} from "../services/message-handler";
 import {store} from "../services/data-handler";
 import {v4 as uuidv4} from "uuid";
 import {userData} from "../App";
-import {GroupMessage, TopGroupMessage, BottomGroupMessage} from "./groupMessage";
+// import {GroupMessage, TopGroupMessage, BottomGroupMessage} from "./groupMessage";
 // import { activeChannel } from "../services/message-handler";
 
 export const messagesToShow = 75;
@@ -55,11 +55,11 @@ class Messages extends React.Component {
    }
 	render() {
 		// console.log("messages in current channel:", store.getState().channels[store.getState().activeChannel].messages);
-		let epico = 0;
+		// let epico = 0;
 		const msgs = store.getState().channels[store.getState().activeChannel].messages;
 		while (msgs.length > messagesToShow) {
 			msgs.shift();
-			epico++;
+			// epico++;
 		}
 		// console.log("Trimmed msgs. Outputting:");
 		// console.log(msgs);

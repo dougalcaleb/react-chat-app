@@ -4,7 +4,6 @@ import PrivateRoute from "../Routing/PrivateRoute";
 import {signout} from "../helpers/auth";
 import "../styles/index.css";
 import ChannelList from "../components/ChannelList";
-import Channels from "../components/Channels";
 import Messages from "../components/messages";
 
 // Main page
@@ -29,7 +28,6 @@ const Main = (props) => {
 			</header>
 			<main>
 				<ChannelList />
-            {/* <Channels /> */}
             <Messages />
 			</main>
 		</div>

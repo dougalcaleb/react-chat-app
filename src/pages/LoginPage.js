@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { signInWithGoogle } from "../helpers/auth";
 
 // Login page: handles login/signup
-// Does not properly handle new users yet
 
 export default class LoginPage extends React.Component {
    state = {

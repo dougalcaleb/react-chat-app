@@ -2,24 +2,14 @@ import {db} from "./firebase";
 import {userData} from "../App";
 import {store} from "./data-handler";
 
-let mCount = 0;
-let knownMessages = 0;
+// let mCount = 0;
+// let knownMessages = 0;
 
 // Send to and recieve from this collection
 let Firestore_Message_Collection = "channels";
 
-let messageList = [];
-let channelList = [{id: 0, name: "general"}];
 let knownActiveChannel = store.getState().activeChannel;
 
-let newMessage = {
-	displayName: "Unknown",
-	timestamp: 0,
-	pic: null,
-	uuid: null,
-	channel: null,
-	text: "< Error >",
-};
 
 // Channels
 async function newChannel(name) {
@@ -34,7 +24,7 @@ db.collection("channels")
 		channels.forEach(function (doc) {
 			newChannel.push(doc.data());
 		});
-		console.log("CHANNELS UPDATE, OUTPUTTING:", newChannel);
+		// console.log("CHANNELS UPDATE, OUTPUTTING:", newChannel);
 		store.dispatch({type: "UPDATE_CHANNELS", channel: newChannel});
 	});
 
@@ -72,16 +62,16 @@ function setMessageListener() {
 				ml.push(doc.data());
 			});
 			store.dispatch({type: "UPDATE_MESSAGE_LIST", messages: ml});
-			knownMessages = ml.length;
-			mCount = ml.length;
+			// knownMessages = ml.length;
+			// mCount = ml.length;
 			console.log("Getting updated messages for channel " + store.getState().activeChannel);
 		});
 }
 
 function checkActiveChannel() {
-	console.log("CHECKING");
+	// console.log("CHECKING");
 	if (store.getState().activeChannel !== knownActiveChannel) {
-		console.log("CHANNEL SWITCHED");
+		// console.log("CHANNEL SWITCHED");
 		setMessageListener();
 		knownActiveChannel = store.getState().activeChannel;
 	}
@@ -93,7 +83,7 @@ async function getChannels() {
 	channels.forEach(function (doc) {
 		newChannel.push(doc.data());
 	});
-	console.log("CHANNELS UPDATE, OUTPUTTING:", newChannel);
+	// console.log("CHANNELS UPDATE, OUTPUTTING:", newChannel);
 	store.dispatch({type: "UPDATE_CHANNELS", channel: newChannel});
 }
 
@@ -109,9 +99,9 @@ async function getMessages() {
 		ml.push(doc.data());
 	});
 	store.dispatch({type: "UPDATE_MESSAGE_LIST", messages: ml});
-	knownMessages = ml.length;
-	mCount = ml.length;
-	console.log("Getting updated messages for channel " + store.getState().activeChannel);
+	// knownMessages = ml.length;
+	// mCount = ml.length;
+	// console.log("Getting updated messages for channel " + store.getState().activeChannel);
 }
 
 async function getAllData() {
@@ -119,7 +109,12 @@ async function getAllData() {
    await getMessages();
 }
 
-document.onload = getAllData();
+function setup() {
+   setMessageListener();
+   getAllData();
+}
+
+document.onload = setup();
 
 store.subscribe(checkActiveChannel);
 export {sendMessage, newChannel, getMessagesFromChannel};
