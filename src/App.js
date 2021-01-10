@@ -38,7 +38,7 @@ const App = () => {
             }
             userExists = userInDB(userData.email);
             if (userExists) {
-               console.log("You are in the database");
+               // console.log("You are in the database");
                if (userData) {
                   setAuth(true);
                   setUser(userData);
@@ -47,7 +47,7 @@ const App = () => {
                   setUser(null);
                }
             } else {
-               console.log("You are not in the database");
+               // console.log("You are not in the database");
                addUserToDB(userData);
             }
          }
@@ -67,7 +67,7 @@ const App = () => {
    );
 }
 
-console.log(userData);
+// console.log(userData);
 
 export default App;
 export { userData };

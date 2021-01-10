@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/index.css";
 import { store } from "../services/data-handler";
-import { newChannel } from "../services/message-handler";
+import { newChannel, getMessagesFromChannel } from "../services/message-handler";
 import { v4 as uuidv4 } from "uuid";
 // import { activeChannel } from "../services/message-handler";
 
@@ -33,8 +33,11 @@ class ChannelList extends React.Component {
       })
    }
 
-   switchToChannel = (id, name) => {
-      store.dispatch({type: "SWITCH_CHNL", switchToChannel: id});
+   switchToChannel = async (id, name) => {
+      // console.log("potential element");
+      // console.log(e);
+      await getMessagesFromChannel(id);
+      store.dispatch({ type: "SWITCH_CHNL", switchToChannel: id });
    }
    
    setActiveStyle = (e) => {
@@ -64,8 +67,11 @@ class ChannelList extends React.Component {
 
 
    render() {
+      console.log("Rendering channel list. Outputting state: ");
+      console.log(store.getState());
       const listOfChannels = store.getState().channels.map((c) => {
-         return <li onClick={() => this.switchToChannel(c.id, c.name)} onClick={this.setActiveStyle} key={uuidv4()} className={c.id == 0 ? "active-channel-name" : ""}>{c.name}</li>;
+         console.log("returning channel " + c.id);
+         return <li onClick={() => this.switchToChannel(c.id, c.name)} key={uuidv4()} className={c.id == 0 ? `channel- ${c.id} active-channel-name` : `channel-${c.id}`}>{c.name}</li>;
 		});
 		return (
 			<div className="channels">

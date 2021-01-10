@@ -6,7 +6,7 @@ import Messages from "./messages";
 class Channel extends React.Component {
    render() {
       // const messages = store.getState().channels
-      console.log("Rendering channel", this.props.channelId, "with messages", store.getState().channels[this.props.channelId].messages);
+      // console.log("Rendering channel", this.props.channelId, "with messages", store.getState().channels[this.props.channelId].messages);
       return (
          <div>
             <Messages/>

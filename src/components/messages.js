@@ -64,34 +64,34 @@ class Messages extends React.Component {
 		// console.log("Trimmed msgs. Outputting:");
 		// console.log(msgs);
 		const messages = msgs.map((msg) => {
-			if (epico < 73 && epico < msgs.length - 2) {
-				epico++;
+			// if (epico < 73 && epico < msgs.length - 2) {
+				// epico++;
 				//   console.log(epico);
 				//   console.log(msgs[epico].text);
-			}
+			// }
 			let sent;
 			if (userData.uuid === msg.uuid) {
 				sent = "sent";
 			}
-			if (msgs.length > 2) {
-				if (msgs[epico].uuid === msgs[epico + 1].uuid && msgs[epico].uuid !== msgs[epico - 1].uuid) {
-					//   console.log("this is for some reason the bottom");
-					return <BottomGroupMessage message={msg.text} key={uuidv4()} clas={sent} pic={msg.pic} />;
-				} else if (msgs[epico].uuid !== msgs[epico - 1].uuid && msgs[epico].uuid === msgs[epico + 1].uuid) {
-					console.log("bruh");
-					return <TopGroupMessage pic={msg.pic} message={msg.text} key={uuidv4()} clas={sent} name={msg.displayName} />;
-				} else if (msgs[epico].uuid === msgs[epico - 1].uuid) {
-					if (msgs[epico].uuid === msgs[epico + 1].uuid) {
-						return <GroupMessage message={msg.text} key={uuidv4()} clas={sent} />;
-					} else {
-						return <GroupMessage message={msg.text} key={uuidv4()} clas={sent} />;
-					}
-				} else {
-					return <Message name={msg.displayName} message={msg.text} time={msg.timestamp} pic={msg.pic} key={uuidv4()} clas={sent} />;
-				}
-			} else {
+			// if (msgs.length > 2) {
+			// 	if (msgs[epico].uuid === msgs[epico + 1].uuid && msgs[epico].uuid !== msgs[epico - 1].uuid) {
+			// 		//   console.log("this is for some reason the bottom");
+			// 		return <BottomGroupMessage message={msg.text} key={uuidv4()} clas={sent} pic={msg.pic} />;
+			// 	} else if (msgs[epico].uuid !== msgs[epico - 1].uuid && msgs[epico].uuid === msgs[epico + 1].uuid) {
+			// 		// console.log("bruh");
+			// 		return <TopGroupMessage pic={msg.pic} message={msg.text} key={uuidv4()} clas={sent} name={msg.displayName} />;
+			// 	} else if (msgs[epico].uuid === msgs[epico - 1].uuid) {
+			// 		if (msgs[epico].uuid === msgs[epico + 1].uuid) {
+			// 			return <GroupMessage message={msg.text} key={uuidv4()} clas={sent} />;
+			// 		} else {
+			// 			return <GroupMessage message={msg.text} key={uuidv4()} clas={sent} />;
+			// 		}
+			// 	} else {
+			// 		return <Message name={msg.displayName} message={msg.text} time={msg.timestamp} pic={msg.pic} key={uuidv4()} clas={sent} />;
+			// 	}
+			// } else {
 				return <Message name={msg.displayName} message={msg.text} time={msg.timestamp} pic={msg.pic} key={uuidv4()} clas={sent} />;
-			}
+			// }
 		});
 
 		return (
