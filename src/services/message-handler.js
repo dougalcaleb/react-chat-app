@@ -1,6 +1,7 @@
 import {db} from "./firebase";
 import {userData} from "../App";
 import {store} from "./data-handler";
+import { useDebugValue } from "react";
 
 // let mCount = 0;
 // let knownMessages = 0;
@@ -9,6 +10,8 @@ import {store} from "./data-handler";
 let Firestore_Message_Collection = "channels";
 
 let knownActiveChannel = store.getState().activeChannel;
+
+let unsubscriber = null;
 
 
 // Channels
@@ -52,7 +55,10 @@ async function sendMessage(text) {
 }
 
 function setMessageListener() {
-	db.collection(Firestore_Message_Collection)
+   if (unsubscriber !== null) {
+      unsubscriber();
+   }
+	unsubscriber = db.collection(Firestore_Message_Collection)
 		.doc(`channel-${store.getState().activeChannel}`)
 		.collection("messages")
 		.orderBy("timestamp", "asc")
