@@ -1,6 +1,5 @@
 import { createStore } from "redux";
 
-// const combined = combineReducers(messageReducer);
 let defaultedState = {
    channels: [
       {
@@ -32,11 +31,17 @@ function updateStore(state = defaultedState, action) {
          return { channels: fullChannels, activeChannel: state.activeChannel };
       case "UPDATE_CHANNELS":
          let newChannelList = [];
+         let idx = 0;
          action.channel.forEach(function (c) {
-            c.messages = [];
+            if (state.channels[idx]) {
+               c.messages = state.channels[idx].messages;
+            } else {
+               c.messages = [];
+            }
             newChannelList[c.id] = c;
+            idx++;
          });
-         // console.log("UPDATE_CHANNELS called, outputting return: ",{ channels: newChannelList, activeChannel: state.activeChannel })
+         console.log("UPDATE_CHANNELS called, outputting return: ",{ channels: newChannelList, activeChannel: state.activeChannel })
          return { channels: newChannelList, activeChannel: state.activeChannel };
       case "UPDATE_CHNLS":
          return { channels: [...state.channels, { name: action.channelName, messages: [], id: state.channels.length }], activeChannel: state.activeChannel };

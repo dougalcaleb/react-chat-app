@@ -1,7 +1,6 @@
 import {db} from "./firebase";
 import {userData} from "../App";
 import {store} from "./data-handler";
-import { useDebugValue } from "react";
 
 // let mCount = 0;
 // let knownMessages = 0;
@@ -70,7 +69,7 @@ function setMessageListener() {
 			store.dispatch({type: "UPDATE_MESSAGE_LIST", messages: ml});
 			// knownMessages = ml.length;
 			// mCount = ml.length;
-			console.log("Getting updated messages for channel " + store.getState().activeChannel);
+			// console.log("Getting updated messages for channel " + store.getState().activeChannel);
 		});
 }
 
